@@ -5,6 +5,7 @@
   <title>Menu CS2 - Gerenciador de Partidas</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <style>
+/* Reset e base */
 html, body {
   height: 100%;
   margin: 0;
@@ -35,13 +36,13 @@ button.cs2-btn {
   color: #1b1b1b;
   font-weight: 700;
   letter-spacing: 0.6px;
-  box-shadow: 0 0 8px #ffcb3b, 0 6px 18px rgba(0,0,0,0.5), inset 0 0 6px rgba(255,255,255,0.3);
+  box-shadow: 0 0 12px #ffcb3b, 0 6px 18px rgba(0,0,0,0.5), inset 0 0 6px rgba(255,255,255,0.3);
   transition: all 0.25s ease;
 }
 
 button.cs2-btn:hover {
   transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 0 14px #ffdd55, 0 10px 26px rgba(0,0,0,0.6), inset 0 0 8px rgba(255,255,255,0.4);
+  box-shadow: 0 0 20px #ffdd55, 0 10px 26px rgba(0,0,0,0.6), inset 0 0 8px rgba(255,255,255,0.4);
 }
 
 /* Painel de páginas */
@@ -51,18 +52,17 @@ button.cs2-btn:hover {
   inset: 22px 20px 20px 20px;
   padding: 28px;
   box-sizing: border-box;
-  background: rgba(10,10,20,0.85);
-  border-radius: 18px;
+  background: rgba(10,10,20,0.88);
+  border-radius: 20px;
   z-index: 40;
   overflow-y: auto;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
   border: 1px solid rgba(255,200,0,0.3);
-  box-shadow: 0 0 20px rgba(255,200,0,0.15);
+  box-shadow: 0 0 30px rgba(255,200,0,0.2);
 }
 
 /* Botão voltar */
 .back-btn {
-  margin-top: 20px;
   padding: 10px 16px;
   font-size: 16px;
   background: rgba(50,50,70,0.9);
@@ -76,7 +76,7 @@ button.cs2-btn:hover {
 
 .back-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 0 12px #ffd600, 0 6px 14px rgba(0,0,0,0.5);
+  box-shadow: 0 0 16px #ffd600, 0 6px 14px rgba(0,0,0,0.5);
 }
 
 /* Informações do usuário */
@@ -93,12 +93,12 @@ button.cs2-btn:hover {
 }
 
 .profile-pic {
-  width: 44px;
-  height: 44px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   overflow: hidden;
   border: 2px solid #ffd600;
-  box-shadow: 0 0 8px #ffd600;
+  box-shadow: 0 0 12px #ffd600;
 }
 
 .profile-pic img {
@@ -109,20 +109,22 @@ button.cs2-btn:hover {
 }
 
 /* Títulos */
-h1 {
+h1, h2, h3 {
   margin: 8px 0 22px;
-  font-size: 28px;
-  letter-spacing: 1px;
-  color: #ffd36b;
-  text-shadow: 0 0 6px #ffd36b, 0 1px 6px rgba(0,0,0,0.7);
+  font-weight: 700;
+  text-shadow: 0 0 6px rgba(255,200,0,0.6), 0 1px 4px rgba(0,0,0,0.6);
 }
+
+h1 { font-size: 32px; color: #ffd36b; }
+h2 { font-size: 24px; color: #ffea94; }
+h3 { font-size: 20px; color: #ffcb3b; }
 
 /* Match setup */
 .match-setup {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 18px;
+  gap: 20px;
   min-height: 40vh;
 }
 
@@ -135,7 +137,7 @@ h1 {
 input.team-input {
   padding: 12px 16px;
   font-size: 16px;
-  border-radius: 12px;
+  border-radius: 14px;
   border: 2px solid rgba(255,255,255,0.2);
   background: rgba(255,255,255,0.05);
   color: #fff;
@@ -146,14 +148,13 @@ input.team-input {
 input.team-input:focus {
   border-color: #ffd600;
   background: rgba(255,255,255,0.12);
-  box-shadow: 0 0 10px #ffd600;
+  box-shadow: 0 0 12px #ffd600;
 }
 
 /* MD buttons */
 .md-buttons {
   display: flex;
   gap: 12px;
-  margin-top: 10px;
 }
 
 .md-btn {
@@ -164,18 +165,18 @@ input.team-input:focus {
   font-weight: 700;
   background: linear-gradient(145deg,#ffea94,#ffb000);
   color: #1b1b1b;
-  box-shadow: 0 0 6px #ffd600, 0 4px 12px rgba(0,0,0,0.4);
-  transition: all 0.2s ease;
+  box-shadow: 0 0 8px #ffd600, 0 4px 12px rgba(0,0,0,0.4);
+  transition: all 0.25s ease;
 }
 
 .md-btn:hover {
-  transform: scale(1.06);
-  box-shadow: 0 0 12px #ffd600, 0 6px 16px rgba(0,0,0,0.5);
+  transform: scale(1.08);
+  box-shadow: 0 0 16px #ffd600, 0 6px 18px rgba(0,0,0,0.5);
 }
 
 .md-btn.selected {
   outline: 4px solid #ffd600;
-  box-shadow: 0 0 18px #ffd600, 0 8px 20px rgba(0,0,0,0.5);
+  box-shadow: 0 0 20px #ffd600, 0 8px 20px rgba(0,0,0,0.5);
 }
 
 /* Maps */
@@ -184,7 +185,6 @@ input.team-input:focus {
   gap: 14px;
   flex-wrap: wrap;
   justify-content: center;
-  max-width: 980px;
 }
 
 .map-btn {
@@ -194,135 +194,93 @@ input.team-input:focus {
   object-fit: cover;
   border: 2px solid #ffd600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
 }
 
 .map-btn:hover {
-  transform: scale(1.08);
-  filter: brightness(1.15);
-  box-shadow: 0 0 14px #ffd600, 0 4px 12px rgba(0,0,0,0.5);
+  transform: scale(1.1) rotate(-1deg);
+  filter: brightness(1.2);
+  box-shadow: 0 0 18px #ffd600, 0 4px 12px rgba(0,0,0,0.5);
 }
 
-/* Small panel */
-#mapPanel {
-  margin-top: 16px;
-  color: #fff;
+/* Perfil */
+#perfilPage h2, #perfilPage h3 {
   text-align: center;
-  min-height: 36px;
 }
 
-.current-turn {
-  font-size: 16px;
-  margin-bottom: 8px;
-  color: #ffd36b;
+/* Medalhas */
+#medalContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  justify-items: center;
+}
+
+/* Medalha individual */
+.medal {
+  transition: transform 0.25s ease;
+}
+
+.medal:hover { transform: scale(1.05); }
+
+/* Estatísticas */
+.perfil-content div[id^="stat"] {
+  font-size: 22px;
   font-weight: 700;
-  text-shadow: 0 0 6px #ffd36b, 0 1px 2px rgba(0,0,0,0.6);
+  text-shadow: 0 0 6px #ffd600;
 }
 
-/* Partidas list */
+/* Imagem lateral do perfil */
+.perfil-side-img {
+  position: absolute;
+  top: 120px;
+  right: 100px;
+  width: 340px;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 0 30px #ffd600, 0 0 10px rgba(0,0,0,0.5);
+  transition: transform 0.25s ease;
+}
+
+.perfil-side-img:hover { transform: scale(1.05); }
+
+/* Partidas */
 .match-item {
-  border: 1px solid rgba(255,255,255,0.15);
-  padding: 14px;
   border-radius: 14px;
+  padding: 16px;
   margin-bottom: 14px;
-  background: rgba(10,10,20,0.7);
-  box-shadow: 0 0 6px #ffd600, 0 4px 10px rgba(0,0,0,0.4);
-  transition: all 0.2s ease;
+  background: rgba(10,10,20,0.75);
+  box-shadow: 0 0 10px #ffd600, 0 4px 8px rgba(0,0,0,0.4);
+  transition: all 0.25s ease;
 }
 
-.match-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 14px #ffd600, 0 6px 16px rgba(0,0,0,0.5);
-}
+.match-item:hover { transform: translateY(-2px); box-shadow: 0 0 18px #ffd600, 0 6px 16px rgba(0,0,0,0.5); }
 
 textarea.score-input {
   width: 100%;
-  height: 38px;
   border-radius: 10px;
   padding: 8px 10px;
   font-size: 15px;
-  background: rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.08);
   border: 1px solid rgba(255,255,255,0.15);
   color: #fff;
   outline: none;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
 }
 
 textarea.score-input:focus {
   border-color: #ffd600;
-  box-shadow: 0 0 10px #ffd600;
-}
-
-.small-muted {
-  color: rgba(255,255,255,0.6);
-  font-size: 13px;
+  box-shadow: 0 0 12px #ffd600;
 }
 
 /* Responsive */
-@media (max-width:640px){
+@media (max-width: 640px) {
   button.cs2-btn { width: 130px; font-size: 15px; padding: 10px; }
   .map-btn { width: 100px; height: 64px; }
   input.team-input { font-size: 14px; padding: 10px 12px; }
   .md-btn { padding: 10px 14px; font-size: 14px; }
+  .perfil-side-img { width: 240px; right: 20px; top: 140px; }
 }
-
-.menu-logo {
-  width: 60px;               /* tamanho pequeno, visível mas não grande demais */
-  height: 60px;
-  object-fit: contain;       /* mantém proporção da imagem */
-  border-radius: 10px;       /* cantos arredondados */
-  box-shadow: 0 0 12px #ffd600, 0 0 6px rgba(0,0,0,0.5); /* glow neon */
-}
-
-.menu-logo-top {
-  position: absolute;
-  top: 170px;        /* distância do topo */
-  left: 800px;       /* distância da lateral esquerda */
-  z-index: 55;      /* acima do menu */
-}
-
-.menu-logo-top img {
-  width: 350px;        /* ajuste do tamanho da imagem */
-  height: auto;        /* mantém proporção */
-  border-radius: 12px;
-  box-shadow: 0 0 16px #ffd600, 0 0 8px rgba(0,0,0,0.5); /* glow neon */
-  transition: transform 0.2s ease;
-}
-
-.menu-logo-top img:hover {
-  transform: scale(1.05); /* leve efeito ao passar o mouse */
-}
-
-
-.perfil-side-img {
-  position: absolute;
-  top: 120px;           /* distância do topo, ajuste se quiser */
-  right: 180px;         /* entre o canto e o meio da tela */
-  width: 320px;         /* tamanho da imagem */
-  height: auto;         /* mantém proporção */
-  border-radius: 12px;  /* cantos arredondados */
-  box-shadow: 0 0 20px #ffd600, 0 0 10px rgba(0,0,0,0.5); /* glow neon */
-  z-index: 30;          /* atrás dos botões, mas acima do fundo */
-  transition: transform 0.25s ease;
-}
-
-.perfil-side-img:hover {
-  transform: scale(1.05);  /* leve zoom ao passar mouse */
-}
-
-#perfilPage {
-  display: none;
-  position: absolute;
-  inset: 0;                  /* ocupa toda a tela */
-  padding: 40px 60px;        /* espaçamento interno */
-  box-sizing: border-box;
-  background: rgba(10,10,20,0.85);  /* fundo sem centralizar o conteúdo */
-  border-radius: 0;           /* sem cantos arredondados */
-  z-index: 40;
-  overflow-y: auto;
-  backdrop-filter: blur(10px);
-}
-
 
 </style>
 
@@ -548,11 +506,11 @@ textarea.score-input:focus {
     medals.forEach((m, index) => {
       const div = document.createElement('div');
       div.className = 'medal';
-      div.style.cssText = 'width:50px; display:flex; flex-direction:column; align-items:center; position:relative; cursor:pointer;';
+      div.style.cssText = 'width:200px; display:flex; flex-direction:column; align-items:center; position:relative; cursor:pointer;';
 
       const imgWrapper = document.createElement('div');
       imgWrapper.style.cssText = `
-        width:50px; height:50px; border-radius:50%; overflow:hidden; background:#ffd36b; display:flex; align-items:center; justify-content:center; position:relative;
+        width:200px; height:200px; border-radius:50%; overflow:hidden; background:#ffd36b; display:flex; align-items:center; justify-content:center; position:relative;
       `;
       const img = document.createElement('img');
       img.src = m.fileData;
@@ -564,8 +522,8 @@ textarea.score-input:focus {
       const removeBtn = document.createElement('div');
       removeBtn.innerText = '✖';
       removeBtn.style.cssText = `
-        position:absolute; top:2px; right:2px; background:rgba(0,0,0,0.6); color:#fff;
-        width:18px; height:18px; border-radius:50%; text-align:center; line-height:18px;
+        position:absolute; top:10px; right:1px; background:rgba(0,0,0,0.6); color:#fff;
+        width:50px; height:50px; border-radius:50%; text-align:center; line-height:50px;
         font-size:12px; cursor:pointer; display:none;
       `;
       removeBtn.onclick = function(e) {
