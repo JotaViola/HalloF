@@ -1,189 +1,158 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Menu CS2</title>
+  <meta charset="UTF-8" />
+  <title>Menu CS2 - Gerenciador de Partidas</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <style>
+    html,body{height:100%;margin:0;font-family:Inter,Arial,sans-serif}
     body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-  background: url('https://raw.githubusercontent.com/JotaViola/HalloF/main/wallpaper test2.jpg') center/cover no-repeat fixed;
-  background-size: 100% auto; /* 80% da largura, altura proporcional */
-}
-
-
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: url('https://raw.githubusercontent.com/JotaViola/HalloF/main/wallpaper%20test2.jpg') center/cover no-repeat fixed;
+      background-size: 100% auto;
+      height: 100vh;
+      color: #fff;
+    }
+    /* Menu principal */
     .menu-container {
       position: absolute;
-      top: 40px;
+      top: 24px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      flex-direction: row;
-      gap: 40px;
+      gap: 18px;
       text-align: center;
+      z-index: 50;
     }
-
-    button {
-      width: 220px;
-      padding: 16px;
-      font-size: 22px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-
-      background: linear-gradient(180deg, rgba(255,200,0,0.9) 0%, rgba(255,150,0,0.9) 100%);
-      color: #000;
-      font-weight: bold;
-      letter-spacing: 1px;
-      box-shadow: 0 0 12px rgba(255,180,0,0.7);
-      transition: 0.2s ease;
-    }
-
-    button:hover {
-      transform: scale(1.06);
-      box-shadow: 0 0 18px rgba(255,200,0,1);
-      filter: brightness(1.15);
-    }
-
-    /* Módulos escondidos */
-    .page {
-      display: none;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.85);
-      color: white;
-      padding: 40px;
-      box-sizing: border-box;
-    }
-
-    .back-btn {
-      margin-top: 20px;
-      padding: 10px 20px;
+    button.cs2-btn {
+      width: 180px;
+      padding: 12px 16px;
       font-size: 18px;
-      background: #444;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
-    }
-
-    .back-btn:hover {
-      background: #777;
-    }
-      /* Barra de blur estilo vidro do CS2 */
-    .top-bar-blur {
-      display: none;
-    }
-
-    /* Botões estilo CS2 */
-    .cs2-btn {
-      width: 220px;
-      padding: 18px;
-      font-size: 22px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-
       background: linear-gradient(180deg, #ffea94 0%, #ffc43a 40%, #ff9d00 100%);
       color: #000;
-      font-weight: bold;
-      letter-spacing: 1px;
-      text-shadow: 0 0 4px rgba(255,255,255,0.4);
-
-      box-shadow:
-        0 0 10px rgba(255,200,0,0.9),
-        inset 0 0 6px rgba(255,255,255,0.4);
-
-      transition: 0.2s ease;
-      position: relative;
-      overflow: hidden;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.35), inset 0 0 6px rgba(255,255,255,0.2);
+      transition: transform .18s ease, box-shadow .18s ease;
     }
-
-    /* Efeito luz passando (scanline) */
-    .cs2-btn::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 80%;
-      height: 100%;
-      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.5), transparent);
-      transform: skewX(-20deg);
-      transition: 0.4s;
+    button.cs2-btn:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(0,0,0,0.45)}
+    .page{
+      display:none;
+      position:absolute;
+      inset:22px 0 0 0;
+      padding:28px;
+      box-sizing:border-box;
+      background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65));
+      z-index: 40;
+      overflow:auto;
     }
-
-    .cs2-btn:hover::after {
-      left: 120%;
+    .back-btn{
+      margin-top:20px;padding:8px 14px;font-size:16px;background:#444;border:none;border-radius:8px;color:#fff;cursor:pointer;
     }
-
-    .cs2-btn:hover {
-      transform: scale(1.07);
-      box-shadow: 0 0 22px rgba(255,200,0,1), inset 0 0 10px rgba(255,255,255,0.6);
-      filter: brightness(1.18);
+    .user-info{
+      position:absolute;top:18px;left:18px;display:flex;align-items:center;gap:12px;font-size:16px;color:#fff;z-index:60;
+      text-shadow:0 1px 4px rgba(0,0,0,0.7)
     }
-
-    /* Informações do usuário no canto superior esquerdo */
-.user-info {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 18px;
-  color: #fff;
-  font-weight: bold;
-  text-shadow: 0 0 4px rgba(0,0,0,0.7);
+    .profile-pic{width:40px;height:40px;border-radius:50%;overflow:hidden;border:2px solid #fff}
+    .profile-pic img{width:100%;height:100%;object-fit:cover;display:block}
+    h1{margin:8px 0 18px 0}
+    /* Match setup */
+    .match-setup{display:flex;flex-direction:column;align-items:center;gap:14px;min-height:40vh}
+    .match-setup .teams{display:flex;align-items:center;gap:10px}
+    input.team-input{padding:10px 14px;font-size:16px;border-radius:8px;border:2px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.03);color:#fff;outline:none}
+    .md-buttons{display:flex;gap:10px}
+    .md-btn{padding:10px 14px;border-radius:8px;border:none;cursor:pointer;font-weight:700;background:linear-gradient(180deg,#ffea94,#ffb000);color:#000}
+    .md-btn.selected{outline:4px solid rgba(255,193,7,0.18);box-shadow:0 8px 18px rgba(0,0,0,0.35)}
+    /* maps */
+    .maps-container{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;max-width:980px}
+    .map-btn{width:130px;height:80px;border-radius:8px;object-fit:cover;border:2px solid #fff;cursor:pointer;transition:transform .12s ease,opacity .12s ease}
+    .map-btn:hover{transform:scale(1.04)}
+    /* small panel */
+    #mapPanel{margin-top:12px;color:#fff;text-align:center;min-height:36px}
+    .current-turn{font-size:16px;margin-bottom:8px;color:#ffd36b;font-weight:700}
+    /* Partidas list */
+    .match-item{border:1px solid rgba(255,255,255,0.12);padding:10px;border-radius:8px;margin-bottom:12px;background:rgba(0,0,0,0.25)}
+    .match-item button{margin-top:8px}
+    .details{margin-top:8px;padding-top:8px;border-top:1px dashed rgba(255,255,255,0.06)}
+    textarea.score-input{width:100%;height:36px;border-radius:6px;padding:8px;font-size:15px}
+    .small-muted{color:rgba(255,255,255,0.65);font-size:13px}
+    /* responsive */
+    @media (max-width:640px){
+      button.cs2-btn {
+  width: 130px;
+  font-size: 15px;
+  padding: 10px;
 }
-
-/* Bolinha da foto de perfil */
-.profile-pic {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #888; /* cor padrão, pode ser uma imagem depois */
-  border: 2px solid #fff;
-  cursor: pointer;
-  overflow: hidden;
-}
-
-.profile-pic img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-
-</style>
+      .map-btn{width:100px;height:64px}
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Blur e container estilizado estilo CS2 -->
-  <div class="top-bar-blur"></div>
-<div class="user-info">
-  <div class="profile-pic">
-    <img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/avatar gc.png" alt="Perfil">
+  <!-- Perfil -->
+  <div class="user-info">
+    <div class="profile-pic">
+      <img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/avatar%20gc.png" alt="Perfil">
+    </div>
+    <span class="username">Jotinha</span>
   </div>
-  <span class="username">Jotinha</span>
-</div>
 
+  <!-- Menu -->
   <div class="menu-container" id="mainMenu">
     <button class="cs2-btn" onclick="openPage('playPage')">Play</button>
     <button class="cs2-btn" onclick="openPage('perfilPage')">Perfil</button>
     <button class="cs2-btn" onclick="openPage('partidasPage')">Partidas</button>
   </div>
 
-  <!-- Página Play -->
+  <!-- Play Page -->
   <div class="page" id="playPage">
     <h1>Play</h1>
-    <p>Aqui você poderá futuramente iniciar seu sistema de seleção de mapas, MD1, MD3, MD5, etc.</p>
+    <div class="match-setup">
+      <div class="teams">
+        <input id="team1" class="team-input" placeholder="Time 1" />
+        <div style="font-weight:800;padding:0 6px">VS</div>
+        <input id="team2" class="team-input" placeholder="Time 2" />
+      </div>
+
+      <div class="md-buttons" style="margin-top:6px">
+        <button class="md-btn" onclick="setMD(1,this)">MD1</button>
+        <button class="md-btn" onclick="setMD(3,this)">MD3</button>
+        <button class="md-btn" onclick="setMD(5,this)">MD5</button>
+      </div>
+
+      <!-- map selection -->
+      <div class="map-selection" id="mapSelection" style="display:none;flex-direction:column;align-items:center;margin-top:8px">
+        <div class="current-turn" id="currentTurn">Vez de: -</div>
+        <div class="maps-container" id="mapsContainer">
+          <img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/De_mirage.webp" class="map-btn" data-map="De_Mirage" alt="Mirage">
+          <img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/Dust_2_CS2.webp" class="map-btn" data-map="De_Dust2" alt="Dust2">
+          <img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/de_inferno.jpg" class="map-btn" data-map="De_Inferno" alt="Inferno">
+          <img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/de_ancient.jpg" class="map-btn" data-map="De_Ancient" alt="Ancient">
+          <img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/de_nuke.jpg" class="map-btn" data-map="De_Nuke" alt="Nuke">
+          <img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/de_anubis.webp" class="map-btn" data-map="De_Anubis" alt="Anubis">
+          <img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/de_train.jpg" class="map-btn" data-map="De_Train" alt="Train">
+        </div>
+        <div id="mapPanel" class="small-muted"></div>
+        <div style="margin-top:8px">
+          <button class="back-btn" onclick="resetSelection()">Reiniciar seleção</button>
+          <button class="back-btn" style="margin-left:8px" onclick="cancelSelection()">Cancelar</button>
+        </div>
+      </div>
+
+      <div style="margin-top:6px">
+        <small class="small-muted">Ao fim da sequência, a partida será salva automaticamente em Partidas.</small>
+      </div>
+    </div>
+
     <button class="back-btn" onclick="goBack()">Voltar</button>
   </div>
 
-  <!-- Página Perfil -->
+  <!-- Perfil Page -->
   <div class="page" id="perfilPage">
     <h1>Perfil</h1>
     <p>Partidas: 999</p>
@@ -192,25 +161,266 @@
     <button class="back-btn" onclick="goBack()">Voltar</button>
   </div>
 
-  <!-- Página Partidas -->
+  <!-- Partidas Page -->
   <div class="page" id="partidasPage">
     <h1>Histórico de Partidas</h1>
-    <p>Mirage: 13x11 Victory</p>
-    <p>Dust2: 11x13 Defeat</p>
-    <p>Ancient: 13x9 Victory</p>
+    <div id="partidasList"></div>
     <button class="back-btn" onclick="goBack()">Voltar</button>
   </div>
 
   <script>
-    function openPage(pageId) {
+    // Navegação
+    function openPage(pageId){
       document.getElementById('mainMenu').style.display = 'none';
+      document.querySelectorAll('.page').forEach(p=>p.style.display='none');
       document.getElementById(pageId).style.display = 'block';
+      if(pageId === 'partidasPage') updateMatchesPage();
     }
-
-    function goBack() {
-      document.querySelectorAll('.page').forEach(page => page.style.display = 'none');
+    function goBack(){
+      document.querySelectorAll('.page').forEach(p=>p.style.display='none');
       document.getElementById('mainMenu').style.display = 'flex';
     }
+
+    // Dados e lógica
+    let cs2Maps = ["De_Ancient","De_Anubis","De_Dust2","De_Inferno","De_Mirage","De_Nuke","De_Train"];
+    let pickSequence = [];
+    let pickTurn = 0;
+    let availableMaps = [];
+    let pickedMaps = [];
+    let historyMatches = JSON.parse(localStorage.getItem('historyMatches_v1') || '[]');
+
+    const actionsMD = {
+      1: ["Ban1","Ban2","Ban1","Ban2","Ban1","Ban2"],
+      3: ["Ban1","Ban2","Pick1","Pick2","Ban1","Ban2"],
+      5: ["Ban1","Ban2","Pick1","Pick2","Pick1","Pick2"]
+    };
+
+    // helper para formatar nome do time (usar inputs ou padrão)
+    function getTeamNames(){
+      const t1 = document.getElementById('team1').value.trim() || 'Time1';
+      const t2 = document.getElementById('team2').value.trim() || 'Time2';
+      return {t1,t2};
+    }
+
+    function setMD(n,btnEl){
+      // reset visual e estado
+      pickSequence = actionsMD[n];
+      pickTurn = 0;
+      availableMaps = [...cs2Maps];
+      pickedMaps = [];
+
+      // marcar botão selecionado
+      document.querySelectorAll('.md-btn').forEach(b=>b.classList.remove('selected'));
+      if(btnEl) btnEl.classList.add('selected');
+
+      // mostrar painel
+      document.getElementById('mapSelection').style.display = 'flex';
+      updateMapDisplay();
+    }
+
+    function resetSelection(){
+      pickTurn = 0;
+      availableMaps = [...cs2Maps];
+      pickedMaps = [];
+      updateMapDisplay();
+    }
+
+    function cancelSelection(){
+      // volta para menu mantendo nada salvo
+      pickedMaps = [];
+      availableMaps = [];
+      pickSequence = [];
+      pickTurn = 0;
+      document.getElementById('mapSelection').style.display = 'none';
+      document.querySelectorAll('.md-btn').forEach(b=>b.classList.remove('selected'));
+      updateMapDisplay();
+    }
+
+    // Atualiza visual dos mapas e painel
+    function updateMapDisplay(){
+      const imgs = document.querySelectorAll('.map-btn');
+      imgs.forEach(img=>{
+        const map = img.dataset.map;
+        const found = pickedMaps.find(p=>p.map===map);
+        if(found){
+          if(found.action === 'Ban'){
+            img.style.border = '4px solid #c0392b';
+            img.style.opacity = '0.38';
+          } else {
+            img.style.border = '4px solid #27ae60';
+            img.style.opacity = '1';
+          }
+        } else {
+          img.style.border = '2px solid #fff';
+          img.style.opacity = '1';
+        }
+      });
+
+      // painel com lista
+      const panel = document.getElementById('mapPanel');
+      if(panel){
+        if(pickedMaps.length === 0) panel.innerHTML = '<i>Nenhuma ação realizada ainda</i>';
+        else panel.innerHTML = pickedMaps.map((p,i)=>`${i+1}. <b>${p.by}</b>: ${p.map} — ${p.action}`).join('<br>');
+      }
+
+      // vez atual
+      const turnEl = document.getElementById('currentTurn');
+      if(turnEl){
+        if(!pickSequence || pickSequence.length === 0){
+          turnEl.innerText = 'Vez de: -';
+        } else if(pickTurn < pickSequence.length){
+          const action = pickSequence[pickTurn];
+          const who = action.endsWith('1') ? getTeamNames().t1 : getTeamNames().t2;
+          const actText = action.startsWith('Ban') ? 'Ban' : 'Pick';
+          turnEl.innerText = `Vez de: ${who} (${actText})`;
+        } else if(availableMaps.length === 1){
+          turnEl.innerText = 'Último mapa será selecionado automaticamente';
+        } else {
+          turnEl.innerText = 'Seleção concluída!';
+        }
+      }
+    }
+
+    // click nos mapas
+    document.addEventListener('click', function(e){
+      if(!e.target.classList.contains('map-btn')) return;
+      const img = e.target;
+      const mapName = img.dataset.map;
+      if(!availableMaps.includes(mapName)) return;
+      if(!pickSequence || pickSequence.length === 0) return;
+
+      const action = pickSequence[pickTurn];
+      if(!action) return;
+
+      if(action.startsWith('Ban')){
+        pickedMaps.push({map: mapName, action: 'Ban', by: action.endsWith('1') ? getTeamNames().t1 : getTeamNames().t2});
+        availableMaps = availableMaps.filter(m=>m!==mapName);
+      } else {
+        pickedMaps.push({map: mapName, action: 'Pick', by: action.endsWith('1') ? getTeamNames().t1 : getTeamNames().t2});
+        availableMaps = availableMaps.filter(m=>m!==mapName);
+      }
+
+      pickTurn++;
+
+      // se fim da sequência ou só sobrou 1 mapa, finalizar
+      if(pickTurn >= pickSequence.length || availableMaps.length === 1){
+        // restante vira pick final (Last)
+        availableMaps.forEach(m => pickedMaps.push({map: m, action: 'Pick', by: 'Last'}));
+        availableMaps = [];
+        updateMapDisplay();
+        // salvar partida
+        finalizeMatch();
+      } else {
+        updateMapDisplay();
+      }
+    });
+
+    // Finaliza e salva partida no histórico
+    function finalizeMatch(){
+      const {t1,t2} = getTeamNames();
+      const match = {
+        id: Date.now(),
+        time1: t1,
+        time2: t2,
+        picksBans: pickedMaps.slice(),
+        score: ''
+      };
+      historyMatches.unshift(match); // adiciona no topo
+      localStorage.setItem('historyMatches_v1', JSON.stringify(historyMatches));
+      // limpar seleção e voltar ao menu
+      pickedMaps = [];
+      pickSequence = [];
+      pickTurn = 0;
+      availableMaps = [];
+      document.getElementById('mapSelection').style.display = 'none';
+      document.querySelectorAll('.md-btn').forEach(b=>b.classList.remove('selected'));
+      updateMapDisplay();
+      // abrir página partidas
+      openPage('partidasPage');
+    }
+
+    // Renderiza histórico de partidas
+    function updateMatchesPage(){
+      const list = document.getElementById('partidasList');
+      list.innerHTML = '';
+      if(historyMatches.length === 0){
+        list.innerHTML = '<div class="small-muted">Nenhuma partida registrada.</div>';
+        return;
+      }
+
+      historyMatches.forEach((m, idx) => {
+        const item = document.createElement('div');
+        item.className = 'match-item';
+
+        const title = document.createElement('div');
+        title.innerHTML = `<b>${m.time1} <span style="color:#ffd36b">VS</span> ${m.time2}</b>`;
+        item.appendChild(title);
+
+        const btn = document.createElement('button');
+        btn.className = 'back-btn';
+        btn.textContent = 'Mostrar mais';
+        btn.onclick = () => {
+          details.style.display = details.style.display === 'none' ? 'block' : 'none';
+        };
+        item.appendChild(btn);
+
+        const details = document.createElement('div');
+        details.className = 'details';
+        details.style.display = 'none';
+
+        const mapsHtml = m.picksBans.map(p => `<div>${p.by}: ${p.map} (${p.action})</div>`).join('');
+        const mapsTitle = document.createElement('div');
+        mapsTitle.innerHTML = `<b>Mapas (picks / bans):</b><br>${mapsHtml}`;
+        details.appendChild(mapsTitle);
+
+        const scoreLabel = document.createElement('div');
+        scoreLabel.style.marginTop = '8px';
+        scoreLabel.innerHTML = `<label><b>Placar (ex: 13 VS 11)</b></label>`;
+        details.appendChild(scoreLabel);
+
+        const ta = document.createElement('textarea');
+        ta.className = 'score-input';
+        ta.value = m.score || '';
+        ta.placeholder = 'Ex: 13 VS 11';
+        ta.onchange = function(){ updateScore(m.id, this.value); };
+        details.appendChild(ta);
+
+        // botão para remover partida
+        const removeBtn = document.createElement('button');
+        removeBtn.className = 'back-btn';
+        removeBtn.style.marginLeft = '8px';
+        removeBtn.textContent = 'Remover partida';
+        removeBtn.onclick = function(){
+          if(!confirm('Remover esta partida?')) return;
+          historyMatches = historyMatches.filter(h=>h.id !== m.id);
+          localStorage.setItem('historyMatches_v1', JSON.stringify(historyMatches));
+          updateMatchesPage();
+        };
+
+        details.appendChild(removeBtn);
+
+        item.appendChild(details);
+        list.appendChild(item);
+      });
+    }
+
+    function updateScore(matchId, value){
+      const idx = historyMatches.findIndex(m=>m.id === matchId);
+      if(idx === -1) return;
+      historyMatches[idx].score = value;
+      localStorage.setItem('historyMatches_v1', JSON.stringify(historyMatches));
+    }
+
+    // inicialização: set available maps to allow clicking when MD chosen
+    function init(){
+      availableMaps = [];
+      pickedMaps = [];
+      pickSequence = [];
+      pickTurn = 0;
+      // attach initial display
+      updateMapDisplay();
+    }
+    init();
   </script>
 
 </body>
