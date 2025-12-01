@@ -5,423 +5,798 @@
   <title>Menu CS2 - Gerenciador de Partidas</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <style>
-    html,body{height:100%;margin:0;font-family:Inter,Arial,sans-serif}
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background: url('https://raw.githubusercontent.com/JotaViola/HalloF/main/wallpaper%20test2.jpg') center/cover no-repeat fixed;
-      background-size: 100% auto;
-      height: 100vh;
-      color: #fff;
-    }
-    /* Menu principal */
-    .menu-container {
-      position: absolute;
-      top: 24px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 18px;
-      text-align: center;
-      z-index: 50;
-    }
-    button.cs2-btn {
-      width: 180px;
-      padding: 12px 16px;
-      font-size: 18px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      background: linear-gradient(180deg, #ffea94 0%, #ffc43a 40%, #ff9d00 100%);
-      color: #000;
-      font-weight: 700;
-      letter-spacing: 0.6px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.35), inset 0 0 6px rgba(255,255,255,0.2);
-      transition: transform .18s ease, box-shadow .18s ease;
-    }
-    button.cs2-btn:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(0,0,0,0.45)}
-    .page{
-      display:none;
-      position:absolute;
-      inset:22px 0 0 0;
-      padding:28px;
-      box-sizing:border-box;
-      background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65));
-      z-index: 40;
-      overflow:auto;
-    }
-    .back-btn{
-      margin-top:20px;padding:8px 14px;font-size:16px;background:#444;border:none;border-radius:8px;color:#fff;cursor:pointer;
-    }
-    .user-info{
-      position:absolute;top:18px;left:18px;display:flex;align-items:center;gap:12px;font-size:16px;color:#fff;z-index:60;
-      text-shadow:0 1px 4px rgba(0,0,0,0.7)
-    }
-    .profile-pic{width:40px;height:40px;border-radius:50%;overflow:hidden;border:2px solid #fff}
-    .profile-pic img{width:100%;height:100%;object-fit:cover;display:block}
-    h1{margin:8px 0 18px 0}
-    /* Match setup */
-    .match-setup{display:flex;flex-direction:column;align-items:center;gap:14px;min-height:40vh}
-    .match-setup .teams{display:flex;align-items:center;gap:10px}
-    input.team-input{padding:10px 14px;font-size:16px;border-radius:8px;border:2px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.03);color:#fff;outline:none}
-    .md-buttons{display:flex;gap:10px}
-    .md-btn{padding:10px 14px;border-radius:8px;border:none;cursor:pointer;font-weight:700;background:linear-gradient(180deg,#ffea94,#ffb000);color:#000}
-    .md-btn.selected{outline:4px solid rgba(255,193,7,0.18);box-shadow:0 8px 18px rgba(0,0,0,0.35)}
-    /* maps */
-    .maps-container{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;max-width:980px}
-    .map-btn{width:130px;height:80px;border-radius:8px;object-fit:cover;border:2px solid #fff;cursor:pointer;transition:transform .12s ease,opacity .12s ease}
-    .map-btn:hover{transform:scale(1.04)}
-    /* small panel */
-    #mapPanel{margin-top:12px;color:#fff;text-align:center;min-height:36px}
-    .current-turn{font-size:16px;margin-bottom:8px;color:#ffd36b;font-weight:700}
-    /* Partidas list */
-    .match-item{border:1px solid rgba(255,255,255,0.12);padding:10px;border-radius:8px;margin-bottom:12px;background:rgba(0,0,0,0.25)}
-    .match-item button{margin-top:8px}
-    .details{margin-top:8px;padding-top:8px;border-top:1px dashed rgba(255,255,255,0.06)}
-    textarea.score-input{width:100%;height:36px;border-radius:6px;padding:8px;font-size:15px}
-    .small-muted{color:rgba(255,255,255,0.65);font-size:13px}
-    /* responsive */
-    @media (max-width:640px){
-      button.cs2-btn {
-  width: 130px;
-  font-size: 15px;
-  padding: 10px;
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Inter', Arial, sans-serif;
+  background: url('https://raw.githubusercontent.com/JotaViola/HalloF/main/wallpaper%20test2.jpg') center/cover no-repeat fixed;
+  color: #fff;
 }
-      .map-btn{width:100px;height:64px}
-    }
-  </style>
+
+/* Menu principal */
+.menu-container {
+  position: absolute;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 20px;
+  z-index: 50;
+}
+
+button.cs2-btn {
+  width: 180px;
+  padding: 12px 16px;
+  font-size: 18px;
+  border: 2px solid #ffb800;
+  border-radius: 14px;
+  cursor: pointer;
+  background: linear-gradient(145deg, #ffcb3b, #ff9d00);
+  color: #1b1b1b;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  box-shadow: 0 0 8px #ffcb3b, 0 6px 18px rgba(0,0,0,0.5), inset 0 0 6px rgba(255,255,255,0.3);
+  transition: all 0.25s ease;
+}
+
+button.cs2-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 0 14px #ffdd55, 0 10px 26px rgba(0,0,0,0.6), inset 0 0 8px rgba(255,255,255,0.4);
+}
+
+/* Painel de páginas */
+.page {
+  display: none;
+  position: absolute;
+  inset: 22px 20px 20px 20px;
+  padding: 28px;
+  box-sizing: border-box;
+  background: rgba(10,10,20,0.85);
+  border-radius: 18px;
+  z-index: 40;
+  overflow-y: auto;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,200,0,0.3);
+  box-shadow: 0 0 20px rgba(255,200,0,0.15);
+}
+
+/* Botão voltar */
+.back-btn {
+  margin-top: 20px;
+  padding: 10px 16px;
+  font-size: 16px;
+  background: rgba(50,50,70,0.9);
+  border: 2px solid #ffd600;
+  border-radius: 12px;
+  color: #fff;
+  cursor: pointer;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+  transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 12px #ffd600, 0 6px 14px rgba(0,0,0,0.5);
+}
+
+/* Informações do usuário */
+.user-info {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+  z-index: 60;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.9);
+}
+
+.profile-pic {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #ffd600;
+  box-shadow: 0 0 8px #ffd600;
+}
+
+.profile-pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Títulos */
+h1 {
+  margin: 8px 0 22px;
+  font-size: 28px;
+  letter-spacing: 1px;
+  color: #ffd36b;
+  text-shadow: 0 0 6px #ffd36b, 0 1px 6px rgba(0,0,0,0.7);
+}
+
+/* Match setup */
+.match-setup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  min-height: 40vh;
+}
+
+.match-setup .teams {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+input.team-input {
+  padding: 12px 16px;
+  font-size: 16px;
+  border-radius: 12px;
+  border: 2px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+input.team-input:focus {
+  border-color: #ffd600;
+  background: rgba(255,255,255,0.12);
+  box-shadow: 0 0 10px #ffd600;
+}
+
+/* MD buttons */
+.md-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.md-btn {
+  padding: 12px 18px;
+  border-radius: 14px;
+  border: 2px solid #ffd600;
+  cursor: pointer;
+  font-weight: 700;
+  background: linear-gradient(145deg,#ffea94,#ffb000);
+  color: #1b1b1b;
+  box-shadow: 0 0 6px #ffd600, 0 4px 12px rgba(0,0,0,0.4);
+  transition: all 0.2s ease;
+}
+
+.md-btn:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 12px #ffd600, 0 6px 16px rgba(0,0,0,0.5);
+}
+
+.md-btn.selected {
+  outline: 4px solid #ffd600;
+  box-shadow: 0 0 18px #ffd600, 0 8px 20px rgba(0,0,0,0.5);
+}
+
+/* Maps */
+.maps-container {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 980px;
+}
+
+.map-btn {
+  width: 140px;
+  height: 80px;
+  border-radius: 14px;
+  object-fit: cover;
+  border: 2px solid #ffd600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.map-btn:hover {
+  transform: scale(1.08);
+  filter: brightness(1.15);
+  box-shadow: 0 0 14px #ffd600, 0 4px 12px rgba(0,0,0,0.5);
+}
+
+/* Small panel */
+#mapPanel {
+  margin-top: 16px;
+  color: #fff;
+  text-align: center;
+  min-height: 36px;
+}
+
+.current-turn {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #ffd36b;
+  font-weight: 700;
+  text-shadow: 0 0 6px #ffd36b, 0 1px 2px rgba(0,0,0,0.6);
+}
+
+/* Partidas list */
+.match-item {
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 14px;
+  border-radius: 14px;
+  margin-bottom: 14px;
+  background: rgba(10,10,20,0.7);
+  box-shadow: 0 0 6px #ffd600, 0 4px 10px rgba(0,0,0,0.4);
+  transition: all 0.2s ease;
+}
+
+.match-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 14px #ffd600, 0 6px 16px rgba(0,0,0,0.5);
+}
+
+textarea.score-input {
+  width: 100%;
+  height: 38px;
+  border-radius: 10px;
+  padding: 8px 10px;
+  font-size: 15px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+textarea.score-input:focus {
+  border-color: #ffd600;
+  box-shadow: 0 0 10px #ffd600;
+}
+
+.small-muted {
+  color: rgba(255,255,255,0.6);
+  font-size: 13px;
+}
+
+/* Responsive */
+@media (max-width:640px){
+  button.cs2-btn { width: 130px; font-size: 15px; padding: 10px; }
+  .map-btn { width: 100px; height: 64px; }
+  input.team-input { font-size: 14px; padding: 10px 12px; }
+  .md-btn { padding: 10px 14px; font-size: 14px; }
+}
+
+.menu-logo {
+  width: 60px;               /* tamanho pequeno, visível mas não grande demais */
+  height: 60px;
+  object-fit: contain;       /* mantém proporção da imagem */
+  border-radius: 10px;       /* cantos arredondados */
+  box-shadow: 0 0 12px #ffd600, 0 0 6px rgba(0,0,0,0.5); /* glow neon */
+}
+
+.menu-logo-top {
+  position: absolute;
+  top: 170px;        /* distância do topo */
+  left: 800px;       /* distância da lateral esquerda */
+  z-index: 55;      /* acima do menu */
+}
+
+.menu-logo-top img {
+  width: 350px;        /* ajuste do tamanho da imagem */
+  height: auto;        /* mantém proporção */
+  border-radius: 12px;
+  box-shadow: 0 0 16px #ffd600, 0 0 8px rgba(0,0,0,0.5); /* glow neon */
+  transition: transform 0.2s ease;
+}
+
+.menu-logo-top img:hover {
+  transform: scale(1.05); /* leve efeito ao passar o mouse */
+}
+
+
+.perfil-side-img {
+  position: absolute;
+  top: 120px;           /* distância do topo, ajuste se quiser */
+  right: 180px;         /* entre o canto e o meio da tela */
+  width: 320px;         /* tamanho da imagem */
+  height: auto;         /* mantém proporção */
+  border-radius: 12px;  /* cantos arredondados */
+  box-shadow: 0 0 20px #ffd600, 0 0 10px rgba(0,0,0,0.5); /* glow neon */
+  z-index: 30;          /* atrás dos botões, mas acima do fundo */
+  transition: transform 0.25s ease;
+}
+
+.perfil-side-img:hover {
+  transform: scale(1.05);  /* leve zoom ao passar mouse */
+}
+
+#perfilPage {
+  display: none;
+  position: absolute;
+  inset: 0;                  /* ocupa toda a tela */
+  padding: 40px 60px;        /* espaçamento interno */
+  box-sizing: border-box;
+  background: rgba(10,10,20,0.85);  /* fundo sem centralizar o conteúdo */
+  border-radius: 0;           /* sem cantos arredondados */
+  z-index: 40;
+  overflow-y: auto;
+  backdrop-filter: blur(10px);
+}
+
+
+</style>
+
+
 </head>
 <body>
 
-  <!-- Perfil -->
-  <div class="user-info">
-    <div class="profile-pic">
-      <img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/avatar%20gc.png" alt="Perfil">
+<!-- Perfil -->
+<div class="user-info">
+  <div class="profile-pic">
+    <img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/avatar%20gc.png" alt="Perfil">
+  </div>
+  <span class="username">Jotinha</span>
+</div>
+
+<div class="menu-logo-top">
+</div>
+
+<!-- Menu -->
+<div class="menu-container" id="mainMenu">
+  <button class="cs2-btn" onclick="openPage('playPage')">Play</button>
+  <button class="cs2-btn" onclick="openPage('perfilPage')">Perfil</button>
+  <button class="cs2-btn" onclick="openPage('partidasPage')">Partidas</button>
+</div>
+
+<!-- Play Page -->
+<div class="page" id="playPage">
+  <h1>Play</h1>
+  <div class="match-setup">
+    <div class="teams">
+      <input id="team1" class="team-input" placeholder="Time 1" />
+      <div style="font-weight:800;padding:0 6px">VS</div>
+      <input id="team2" class="team-input" placeholder="Time 2" />
     </div>
-    <span class="username">Jotinha</span>
-  </div>
 
-  <!-- Menu -->
-  <div class="menu-container" id="mainMenu">
-    <button class="cs2-btn" onclick="openPage('playPage')">Play</button>
-    <button class="cs2-btn" onclick="openPage('perfilPage')">Perfil</button>
-    <button class="cs2-btn" onclick="openPage('partidasPage')">Partidas</button>
-  </div>
+    <div class="md-buttons">
+      <button class="md-btn" onclick="setMD(1,this)">MD1</button>
+      <button class="md-btn" onclick="setMD(3,this)">MD3</button>
+      <button class="md-btn" onclick="setMD(5,this)">MD5</button>
+    </div>
 
-  <!-- Play Page -->
-  <div class="page" id="playPage">
-    <h1>Play</h1>
-    <div class="match-setup">
-      <div class="teams">
-        <input id="team1" class="team-input" placeholder="Time 1" />
-        <div style="font-weight:800;padding:0 6px">VS</div>
-        <input id="team2" class="team-input" placeholder="Time 2" />
+    <!-- map selection -->
+    <div class="map-selection" id="mapSelection" style="display:none;flex-direction:column;align-items:center;margin-top:8px">
+      <div class="current-turn" id="currentTurn">Vez de: -</div>
+      <div class="maps-container" id="mapsContainer">
+        <img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/De_mirage.webp" class="map-btn" data-map="De_Mirage" alt="Mirage">
+        <img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/Dust_2_CS2.webp" class="map-btn" data-map="De_Dust2" alt="Dust2">
+        <img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/de_inferno.jpg" class="map-btn" data-map="De_Inferno" alt="Inferno">
+        <img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/de_ancient.jpg" class="map-btn" data-map="De_Ancient" alt="Ancient">
+        <img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/de_nuke.jpg" class="map-btn" data-map="De_Nuke" alt="Nuke">
+        <img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/de_anubis.webp" class="map-btn" data-map="De_Anubis" alt="Anubis">
+        <img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/de_train.jpg" class="map-btn" data-map="De_Train" alt="Train">
       </div>
-
-      <div class="md-buttons" style="margin-top:6px">
-        <button class="md-btn" onclick="setMD(1,this)">MD1</button>
-        <button class="md-btn" onclick="setMD(3,this)">MD3</button>
-        <button class="md-btn" onclick="setMD(5,this)">MD5</button>
-      </div>
-
-      <!-- map selection -->
-      <div class="map-selection" id="mapSelection" style="display:none;flex-direction:column;align-items:center;margin-top:8px">
-        <div class="current-turn" id="currentTurn">Vez de: -</div>
-        <div class="maps-container" id="mapsContainer">
-          <img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/De_mirage.webp" class="map-btn" data-map="De_Mirage" alt="Mirage">
-          <img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/Dust_2_CS2.webp" class="map-btn" data-map="De_Dust2" alt="Dust2">
-          <img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/de_inferno.jpg" class="map-btn" data-map="De_Inferno" alt="Inferno">
-          <img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/de_ancient.jpg" class="map-btn" data-map="De_Ancient" alt="Ancient">
-          <img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/de_nuke.jpg" class="map-btn" data-map="De_Nuke" alt="Nuke">
-          <img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/de_anubis.webp" class="map-btn" data-map="De_Anubis" alt="Anubis">
-          <img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/de_train.jpg" class="map-btn" data-map="De_Train" alt="Train">
-        </div>
-        <div id="mapPanel" class="small-muted"></div>
-        <div style="margin-top:8px">
-          <button class="back-btn" onclick="resetSelection()">Reiniciar seleção</button>
-          <button class="back-btn" style="margin-left:8px" onclick="cancelSelection()">Cancelar</button>
-        </div>
-      </div>
-
-      <div style="margin-top:6px">
-        <small class="small-muted">Ao fim da sequência, a partida será salva automaticamente em Partidas.</small>
+      <div id="mapPanel" class="small-muted"></div>
+      <div style="margin-top:8px">
+        <button class="back-btn" onclick="resetSelection()">Reiniciar seleção</button>
+        <button class="back-btn" style="margin-left:8px" onclick="cancelSelection()">Cancelar</button>
       </div>
     </div>
 
-    <button class="back-btn" onclick="goBack()">Voltar</button>
+
+ 
+<div class="menu-container">
+  <button class="cs2-btn">Play</button>
+  <button class="cs2-btn">Perfil</button>
+  <button class="cs2-btn">Partidas</button>
+</div>
+
+
+    <div style="margin-top:6px">
+      <small class="small-muted">Ao fim da sequência, a partida será salva automaticamente em Partidas.</small>
+    </div>
   </div>
 
-  <!-- Perfil Page -->
-  <div class="page" id="perfilPage">
-    <h1>Perfil</h1>
-    <p>Partidas: 999</p>
-    <p>Vitórias: 888</p>
-    <p>Derrotas: 111</p>
-    <button class="back-btn" onclick="goBack()">Voltar</button>
+  <button class="back-btn" onclick="goBack()">Voltar</button>
+</div>
+
+<!-- Perfil Page -->
+<div class="page" id="perfilPage">
+
+  <!-- Botões superiores -->
+  <div style="position:absolute; top:16px; right:16px; display:flex; gap:6px;">
+    <button class="back-btn" style="padding:6px 10px; font-size:13px;" onclick="openEditProfile()">Editar</button>
+    <button class="back-btn" style="padding:6px 10px; font-size:13px;" onclick="openMedalModal()">Adicionar Medalha</button>
   </div>
 
-  <!-- Partidas Page -->
-  <div class="page" id="partidasPage">
-    <h1>Histórico de Partidas</h1>
-    <div id="partidasList"></div>
-    <button class="back-btn" onclick="goBack()">Voltar</button>
+  <div class="perfil-content">
+    <!-- Conteúdo do perfil -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px">
+      <div style="width:120px;height:120px;border-radius:50%;overflow:hidden;border:3px solid #ffd36b">
+        <img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/avatar%20gc.png" alt="Perfil" style="width:100%;height:100%;object-fit:cover">
+      </div>
+      <h2 id="perfilName" style="margin:0">Jotinha</h2>
+
+      <div style="display:flex;justify-content:center;gap:24px;margin-top:18px">
+        <div style="text-align:center">
+          <div id="statPartidas" style="font-size:20px;font-weight:700">999</div>
+          <div style="font-size:14px;color:#ccc">Partidas</div>
+        </div>
+        <div style="text-align:center">
+          <div id="statVitorias" style="font-size:20px;font-weight:700">888</div>
+          <div style="font-size:14px;color:#27ae60">Vitórias</div>
+        </div>
+        <div style="text-align:center">
+          <div id="statDerrotas" style="font-size:20px;font-weight:700">111</div>
+          <div style="font-size:14px;color:#c0392b">Derrotas</div>
+        </div>
+      </div>
+
+      <div style="margin-top:24px">
+        <h3>Medalhas / Pins</h3>
+        <div id="medalContainer" style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center"></div>
+      </div>
+    </div>
+
+    <!-- Imagem do lado direito -->
+    <img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/cardHoF.webp" 
+         alt="Card HoF" 
+         class="perfil-side-img">
   </div>
 
-  <script>
-    // Navegação
-    function openPage(pageId){
-      document.getElementById('mainMenu').style.display = 'none';
-      document.querySelectorAll('.page').forEach(p=>p.style.display='none');
-      document.getElementById(pageId).style.display = 'block';
-      if(pageId === 'partidasPage') updateMatchesPage();
-    }
-    function goBack(){
-      document.querySelectorAll('.page').forEach(p=>p.style.display='none');
-      document.getElementById('mainMenu').style.display = 'flex';
-    }
+  <button class="back-btn" onclick="goBack()" style="margin-top:28px">Voltar</button>
+</div>
 
-    // Dados e lógica
-    let cs2Maps = ["De_Ancient","De_Anubis","De_Dust2","De_Inferno","De_Mirage","De_Nuke","De_Train"];
-    let pickSequence = [];
-    let pickTurn = 0;
-    let availableMaps = [];
-    let pickedMaps = [];
-    let historyMatches = JSON.parse(localStorage.getItem('historyMatches_v1') || '[]');
 
-    const actionsMD = {
-      1: ["Ban1","Ban2","Ban1","Ban2","Ban1","Ban2"],
-      3: ["Ban1","Ban2","Pick1","Pick2","Ban1","Ban2"],
-      5: ["Ban1","Ban2","Pick1","Pick2","Pick1","Pick2"]
+
+<!-- Partidas Page -->
+<div class="page" id="partidasPage">
+  <h1>Histórico de Partidas</h1>
+  <div id="partidasList"></div>
+  <button class="back-btn" onclick="goBack()">Voltar</button>
+</div>
+
+
+
+<script>
+  // Navegação entre páginas
+  function openPage(pageId){
+    document.getElementById('mainMenu').style.display = 'none';
+    document.querySelectorAll('.page').forEach(p => p.style.display='none');
+    document.getElementById(pageId).style.display = 'block';
+    if(pageId === 'partidasPage') updateMatchesPage();
+  }
+
+  function goBack(){
+    document.querySelectorAll('.page').forEach(p=>p.style.display='none');
+    document.getElementById('mainMenu').style.display = 'flex';
+  }
+
+  // -------------------- Perfil --------------------
+  function openEditProfile() {
+    document.getElementById('editPartidas').value = document.getElementById('statPartidas').innerText;
+    document.getElementById('editVitorias').value = document.getElementById('statVitorias').innerText;
+    document.getElementById('editDerrotas').value = document.getElementById('statDerrotas').innerText;
+    document.getElementById('editProfileModal').style.display = 'flex';
+  }
+
+  function closeEditProfile() {
+    document.getElementById('editProfileModal').style.display = 'none';
+  }
+
+  function saveProfileEdits() {
+    const partidas = document.getElementById('editPartidas').value.trim();
+    const vitorias = document.getElementById('editVitorias').value.trim();
+    const derrotas = document.getElementById('editDerrotas').value.trim();
+
+    if (partidas !== '') document.getElementById('statPartidas').innerText = partidas;
+    if (vitorias !== '') document.getElementById('statVitorias').innerText = vitorias;
+    if (derrotas !== '') document.getElementById('statDerrotas').innerText = derrotas;
+
+    const profileStats = {
+      partidas: partidas || document.getElementById('statPartidas').innerText,
+      vitorias: vitorias || document.getElementById('statVitorias').innerText,
+      derrotas: derrotas || document.getElementById('statDerrotas').innerText
     };
+    localStorage.setItem('profileStats_v1', JSON.stringify(profileStats));
 
-    // helper para formatar nome do time (usar inputs ou padrão)
-    function getTeamNames(){
-      const t1 = document.getElementById('team1').value.trim() || 'Time1';
-      const t2 = document.getElementById('team2').value.trim() || 'Time2';
-      return {t1,t2};
+    closeEditProfile();
+  }
+
+  function loadProfileStats() {
+    const stats = JSON.parse(localStorage.getItem('profileStats_v1') || '{}');
+    if (stats.partidas) document.getElementById('statPartidas').innerText = stats.partidas;
+    if (stats.vitorias) document.getElementById('statVitorias').innerText = stats.vitorias;
+    if (stats.derrotas) document.getElementById('statDerrotas').innerText = stats.derrotas;
+  }
+
+  // -------------------- Medalhas --------------------
+  function openMedalModal() {
+    document.getElementById('medalModal').style.display = 'flex';
+  }
+
+  function closeMedalModal() {
+    document.getElementById('medalModal').style.display = 'none';
+    document.getElementById('medalName').value = '';
+    document.getElementById('medalFile').value = '';
+  }
+
+  function saveMedal() {
+    const name = document.getElementById('medalName').value.trim();
+    const fileInput = document.getElementById('medalFile');
+    const file = fileInput.files[0];
+    if (!name || !file) {
+      alert('Por favor, insira nome e selecione o arquivo.');
+      return;
     }
 
-    function setMD(n,btnEl){
-      // reset visual e estado
-      pickSequence = actionsMD[n];
-      pickTurn = 0;
-      availableMaps = [...cs2Maps];
-      pickedMaps = [];
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      let medals = JSON.parse(localStorage.getItem('medals_v1') || '[]');
+      medals.push({ name: name, fileData: e.target.result });
+      localStorage.setItem('medals_v1', JSON.stringify(medals));
+      renderMedals();
+      closeMedalModal();
+    };
+    reader.readAsDataURL(file);
+  }
 
-      // marcar botão selecionado
-      document.querySelectorAll('.md-btn').forEach(b=>b.classList.remove('selected'));
-      if(btnEl) btnEl.classList.add('selected');
+  function renderMedals() {
+    const container = document.getElementById('medalContainer');
+    container.innerHTML = '';
+    const medals = JSON.parse(localStorage.getItem('medals_v1') || '[]');
+    medals.forEach((m, index) => {
+      const div = document.createElement('div');
+      div.className = 'medal';
+      div.style.cssText = 'width:50px; display:flex; flex-direction:column; align-items:center; position:relative; cursor:pointer;';
 
-      // mostrar painel
-      document.getElementById('mapSelection').style.display = 'flex';
-      updateMapDisplay();
-    }
+      const imgWrapper = document.createElement('div');
+      imgWrapper.style.cssText = `
+        width:50px; height:50px; border-radius:50%; overflow:hidden; background:#ffd36b; display:flex; align-items:center; justify-content:center; position:relative;
+      `;
+      const img = document.createElement('img');
+      img.src = m.fileData;
+      img.style.width = '100%';
+      img.style.height = '100%';
+      img.style.borderRadius = '50%';
+      imgWrapper.appendChild(img);
 
-    function resetSelection(){
-      pickTurn = 0;
-      availableMaps = [...cs2Maps];
-      pickedMaps = [];
-      updateMapDisplay();
-    }
+      const removeBtn = document.createElement('div');
+      removeBtn.innerText = '✖';
+      removeBtn.style.cssText = `
+        position:absolute; top:2px; right:2px; background:rgba(0,0,0,0.6); color:#fff;
+        width:18px; height:18px; border-radius:50%; text-align:center; line-height:18px;
+        font-size:12px; cursor:pointer; display:none;
+      `;
+      removeBtn.onclick = function(e) {
+        e.stopPropagation();
+        if(!confirm('Remover esta medalha?')) return;
+        medals.splice(index, 1);
+        localStorage.setItem('medals_v1', JSON.stringify(medals));
+        renderMedals();
+      };
+      imgWrapper.addEventListener('mouseenter', () => removeBtn.style.display='block');
+      imgWrapper.addEventListener('mouseleave', () => removeBtn.style.display='none');
+      imgWrapper.appendChild(removeBtn);
 
-    function cancelSelection(){
-      // volta para menu mantendo nada salvo
-      pickedMaps = [];
-      availableMaps = [];
-      pickSequence = [];
-      pickTurn = 0;
-      document.getElementById('mapSelection').style.display = 'none';
-      document.querySelectorAll('.md-btn').forEach(b=>b.classList.remove('selected'));
-      updateMapDisplay();
-    }
+      div.appendChild(imgWrapper);
 
-    // Atualiza visual dos mapas e painel
-    function updateMapDisplay(){
-      const imgs = document.querySelectorAll('.map-btn');
-      imgs.forEach(img=>{
-        const map = img.dataset.map;
-        const found = pickedMaps.find(p=>p.map===map);
-        if(found){
-          if(found.action === 'Ban'){
-            img.style.border = '4px solid #c0392b';
-            img.style.opacity = '0.38';
-          } else {
-            img.style.border = '4px solid #27ae60';
-            img.style.opacity = '1';
-          }
-        } else {
-          img.style.border = '2px solid #fff';
-          img.style.opacity = '1';
-        }
-      });
+      const nameDiv = document.createElement('div');
+      nameDiv.innerText = m.name;
+      nameDiv.style.cssText = 'margin-top:4px; font-size:12px; color:#fff; text-align:center; word-break:break-word; max-width:50px;';
+      div.appendChild(nameDiv);
 
-      // painel com lista
-      const panel = document.getElementById('mapPanel');
-      if(panel){
-        if(pickedMaps.length === 0) panel.innerHTML = '<i>Nenhuma ação realizada ainda</i>';
-        else panel.innerHTML = pickedMaps.map((p,i)=>`${i+1}. <b>${p.by}</b>: ${p.map} — ${p.action}`).join('<br>');
-      }
+      container.appendChild(div);
+    });
+  }
 
-      // vez atual
-      const turnEl = document.getElementById('currentTurn');
-      if(turnEl){
-        if(!pickSequence || pickSequence.length === 0){
-          turnEl.innerText = 'Vez de: -';
-        } else if(pickTurn < pickSequence.length){
-          const action = pickSequence[pickTurn];
-          const who = action.endsWith('1') ? getTeamNames().t1 : getTeamNames().t2;
-          const actText = action.startsWith('Ban') ? 'Ban' : 'Pick';
-          turnEl.innerText = `Vez de: ${who} (${actText})`;
-        } else if(availableMaps.length === 1){
-          turnEl.innerText = 'Último mapa será selecionado automaticamente';
-        } else {
-          turnEl.innerText = 'Seleção concluída!';
-        }
-      }
-    }
+  // -------------------- Play / MD / Map Selection --------------------
+  const cs2Maps = ["De_Ancient","De_Anubis","De_Dust2","De_Inferno","De_Mirage","De_Nuke","De_Train"];
+  const actionsMD = {
+    1: ["Ban1","Ban2","Ban1","Ban2","Ban1","Ban2"],
+    3: ["Ban1","Ban2","Pick1","Pick2","Ban1","Ban2"],
+    5: ["Ban1","Ban2","Pick1","Pick2","Pick1","Pick2"]
+  };
+  let pickSequence = [], pickTurn = 0, availableMaps = [], pickedMaps = [], historyMatches = JSON.parse(localStorage.getItem('historyMatches_v1') || '[]');
 
-    // click nos mapas
-    document.addEventListener('click', function(e){
-      if(!e.target.classList.contains('map-btn')) return;
-      const img = e.target;
-      const mapName = img.dataset.map;
-      if(!availableMaps.includes(mapName)) return;
-      if(!pickSequence || pickSequence.length === 0) return;
+  function getTeamNames(){
+    const t1 = document.getElementById('team1').value.trim() || 'Time1';
+    const t2 = document.getElementById('team2').value.trim() || 'Time2';
+    return {t1,t2};
+  }
 
-      const action = pickSequence[pickTurn];
-      if(!action) return;
+  function setMD(n, btnEl){
+    pickSequence = actionsMD[n];
+    pickTurn = 0;
+    availableMaps = [...cs2Maps];
+    pickedMaps = [];
+    document.querySelectorAll('.md-btn').forEach(b=>b.classList.remove('selected'));
+    if(btnEl) btnEl.classList.add('selected');
+    document.getElementById('mapSelection').style.display = 'flex';
+    updateMapDisplay();
+  }
 
-      if(action.startsWith('Ban')){
-        pickedMaps.push({map: mapName, action: 'Ban', by: action.endsWith('1') ? getTeamNames().t1 : getTeamNames().t2});
-        availableMaps = availableMaps.filter(m=>m!==mapName);
+  function resetSelection(){
+    pickTurn = 0;
+    availableMaps = [...cs2Maps];
+    pickedMaps = [];
+    updateMapDisplay();
+  }
+
+  function cancelSelection(){
+    pickedMaps = []; availableMaps = []; pickSequence = []; pickTurn = 0;
+    document.getElementById('mapSelection').style.display='none';
+    document.querySelectorAll('.md-btn').forEach(b=>b.classList.remove('selected'));
+    updateMapDisplay();
+  }
+
+  function updateMapDisplay(){
+    const imgs = document.querySelectorAll('.map-btn');
+    imgs.forEach(img=>{
+      const map = img.dataset.map;
+      const found = pickedMaps.find(p=>p.map===map);
+      if(found){
+        img.style.border = found.action==='Ban' ? '4px solid #c0392b' : '4px solid #27ae60';
+        img.style.opacity = found.action==='Ban' ? '0.38' : '1';
       } else {
-        pickedMaps.push({map: mapName, action: 'Pick', by: action.endsWith('1') ? getTeamNames().t1 : getTeamNames().t2});
-        availableMaps = availableMaps.filter(m=>m!==mapName);
-      }
-
-      pickTurn++;
-
-      // se fim da sequência ou só sobrou 1 mapa, finalizar
-      if(pickTurn >= pickSequence.length || availableMaps.length === 1){
-        // restante vira pick final (Last)
-        availableMaps.forEach(m => pickedMaps.push({map: m, action: 'Pick', by: 'Last'}));
-        availableMaps = [];
-        updateMapDisplay();
-        // salvar partida
-        finalizeMatch();
-      } else {
-        updateMapDisplay();
+        img.style.border = '2px solid #fff';
+        img.style.opacity = '1';
       }
     });
 
-    // Finaliza e salva partida no histórico
-    function finalizeMatch(){
-      const {t1,t2} = getTeamNames();
-      const match = {
-        id: Date.now(),
-        time1: t1,
-        time2: t2,
-        picksBans: pickedMaps.slice(),
-        score: ''
+    const panel = document.getElementById('mapPanel');
+    if(panel) panel.innerHTML = pickedMaps.length===0 ? '<i>Nenhuma ação realizada ainda</i>' :
+      pickedMaps.map((p,i)=>`${i+1}. <b>${p.by}</b>: ${p.map} — ${p.action}`).join('<br>');
+
+    const turnEl = document.getElementById('currentTurn');
+    if(turnEl){
+      if(!pickSequence || pickSequence.length===0) turnEl.innerText='Vez de: -';
+      else if(pickTurn < pickSequence.length){
+        const action = pickSequence[pickTurn];
+        const who = action.endsWith('1') ? getTeamNames().t1 : getTeamNames().t2;
+        const actText = action.startsWith('Ban') ? 'Ban' : 'Pick';
+        turnEl.innerText = `Vez de: ${who} (${actText})`;
+      } else if(availableMaps.length===1) turnEl.innerText='Último mapa será selecionado automaticamente';
+      else turnEl.innerText='Seleção concluída!';
+    }
+  }
+
+  document.addEventListener('click', function(e){
+    if(!e.target.classList.contains('map-btn')) return;
+    const img = e.target;
+    const mapName = img.dataset.map;
+    if(!availableMaps.includes(mapName)) return;
+    if(!pickSequence || pickSequence.length===0) return;
+
+    const action = pickSequence[pickTurn];
+    if(!action) return;
+
+    pickedMaps.push({map: mapName, action: action.startsWith('Ban') ? 'Ban' : 'Pick', by: action.endsWith('1') ? getTeamNames().t1 : getTeamNames().t2});
+    availableMaps = availableMaps.filter(m=>m!==mapName);
+    pickTurn++;
+
+    if(pickTurn>=pickSequence.length || availableMaps.length===1){
+      availableMaps.forEach(m=>pickedMaps.push({map:m, action:'Pick', by:'Last'}));
+      availableMaps=[];
+      updateMapDisplay();
+      finalizeMatch();
+    } else {
+      updateMapDisplay();
+    }
+  });
+
+  function finalizeMatch(){
+    const {t1,t2} = getTeamNames();
+    const match = {id: Date.now(), time1:t1, time2:t2, picksBans: pickedMaps.slice(), score:''};
+    historyMatches.unshift(match);
+    localStorage.setItem('historyMatches_v1', JSON.stringify(historyMatches));
+
+    pickedMaps=[]; pickSequence=[]; pickTurn=0; availableMaps=[];
+    document.getElementById('mapSelection').style.display='none';
+    document.querySelectorAll('.md-btn').forEach(b=>b.classList.remove('selected'));
+    updateMapDisplay();
+
+    openPage('partidasPage');
+  }
+
+  function updateMatchesPage(){
+    const list = document.getElementById('partidasList');
+    list.innerHTML = '';
+    if(historyMatches.length===0){ list.innerHTML='<div class="small-muted">Nenhuma partida registrada.</div>'; return; }
+
+    historyMatches.forEach((m, idx)=>{
+      const item = document.createElement('div');
+      item.className='match-item';
+
+      const title = document.createElement('div');
+      title.innerHTML = `<b>${m.time1} <span style="color:#ffd36b">VS</span> ${m.time2}</b>`;
+      item.appendChild(title);
+
+      const btn = document.createElement('button');
+      btn.className='back-btn';
+      btn.textContent='Mostrar mais';
+      const details = document.createElement('div');
+      details.className='details';
+      details.style.display='none';
+      btn.onclick = () => details.style.display = details.style.display==='none'?'block':'none';
+      item.appendChild(btn);
+
+      const mapsHtml = m.picksBans.map(p => `<div>${p.by}: ${p.map} (${p.action})</div>`).join('');
+      const mapsTitle = document.createElement('div');
+      mapsTitle.innerHTML = `<b>Mapas (picks / bans):</b><br>${mapsHtml}`;
+      details.appendChild(mapsTitle);
+
+      const scoreLabel = document.createElement('div'); scoreLabel.style.marginTop='8px';
+      scoreLabel.innerHTML=`<label><b>Placar</b></label>`; details.appendChild(scoreLabel);
+
+      const ta = document.createElement('textarea');
+      ta.className='score-input';
+      ta.value = m.score||'';
+      ta.placeholder='Ex: 13 VS 11';
+      ta.onchange = function(){ updateScore(m.id, this.value); };
+      details.appendChild(ta);
+
+      const removeBtn = document.createElement('button');
+      removeBtn.className='back-btn';
+      removeBtn.style.marginLeft='8px';
+      removeBtn.textContent='Remover partida';
+      removeBtn.onclick=function(){
+        if(!confirm('Remover esta partida?')) return;
+        historyMatches = historyMatches.filter(h=>h.id!==m.id);
+        localStorage.setItem('historyMatches_v1', JSON.stringify(historyMatches));
+        updateMatchesPage();
       };
-      historyMatches.unshift(match); // adiciona no topo
-      localStorage.setItem('historyMatches_v1', JSON.stringify(historyMatches));
-      // limpar seleção e voltar ao menu
-      pickedMaps = [];
-      pickSequence = [];
-      pickTurn = 0;
-      availableMaps = [];
-      document.getElementById('mapSelection').style.display = 'none';
-      document.querySelectorAll('.md-btn').forEach(b=>b.classList.remove('selected'));
-      updateMapDisplay();
-      // abrir página partidas
-      openPage('partidasPage');
-    }
+      details.appendChild(removeBtn);
 
-    // Renderiza histórico de partidas
-    function updateMatchesPage(){
-      const list = document.getElementById('partidasList');
-      list.innerHTML = '';
-      if(historyMatches.length === 0){
-        list.innerHTML = '<div class="small-muted">Nenhuma partida registrada.</div>';
-        return;
-      }
+      item.appendChild(details);
+      list.appendChild(item);
+    });
+  }
 
-      historyMatches.forEach((m, idx) => {
-        const item = document.createElement('div');
-        item.className = 'match-item';
+  function updateScore(matchId, value){
+    const idx = historyMatches.findIndex(m=>m.id===matchId);
+    if(idx===-1) return;
+    historyMatches[idx].score=value;
+    localStorage.setItem('historyMatches_v1', JSON.stringify(historyMatches));
+  }
 
-        const title = document.createElement('div');
-        title.innerHTML = `<b>${m.time1} <span style="color:#ffd36b">VS</span> ${m.time2}</b>`;
-        item.appendChild(title);
+  // -------------------- Inicialização --------------------
+  function init(){
+    availableMaps=[]; pickedMaps=[]; pickSequence=[]; pickTurn=0;
+    updateMapDisplay();
+    renderMedals();
+    loadProfileStats();
+  }
 
-        const btn = document.createElement('button');
-        btn.className = 'back-btn';
-        btn.textContent = 'Mostrar mais';
-        btn.onclick = () => {
-          details.style.display = details.style.display === 'none' ? 'block' : 'none';
-        };
-        item.appendChild(btn);
+  window.addEventListener('DOMContentLoaded', init);
+</script>
 
-        const details = document.createElement('div');
-        details.className = 'details';
-        details.style.display = 'none';
 
-        const mapsHtml = m.picksBans.map(p => `<div>${p.by}: ${p.map} (${p.action})</div>`).join('');
-        const mapsTitle = document.createElement('div');
-        mapsTitle.innerHTML = `<b>Mapas (picks / bans):</b><br>${mapsHtml}`;
-        details.appendChild(mapsTitle);
+<!-- Modais -->
+<div id="medalModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.75); justify-content:center; align-items:center; z-index:100;">
+  <div style="background:#222; padding:20px; border-radius:12px; width:300px; text-align:center; position:relative;">
+    <h2 style="margin-top:0;">Adicionar Medalha</h2>
+    <input type="text" id="medalName" placeholder="Nome da medalha" style="width:100%; padding:8px; margin-bottom:12px; border-radius:6px; border:none;"/>
+    <input type="file" id="medalFile" style="width:100%; margin-bottom:12px;"/>
+    <div style="display:flex; justify-content:space-between; margin-top:12px;">
+      <button class="back-btn" onclick="saveMedal()">Salvar</button>
+      <button class="back-btn" onclick="closeMedalModal()">Cancelar</button>
+    </div>
+  </div>
+</div>
 
-        const scoreLabel = document.createElement('div');
-        scoreLabel.style.marginTop = '8px';
-        scoreLabel.innerHTML = `<label><b>Placar</b></label>`;
-        details.appendChild(scoreLabel);
-
-        const ta = document.createElement('textarea');
-        ta.className = 'score-input';
-        ta.value = m.score || '';
-        ta.placeholder = 'Ex: 13 VS 11';
-        ta.onchange = function(){ updateScore(m.id, this.value); };
-        details.appendChild(ta);
-
-        // botão para remover partida
-        const removeBtn = document.createElement('button');
-        removeBtn.className = 'back-btn';
-        removeBtn.style.marginLeft = '8px';
-        removeBtn.textContent = 'Remover partida';
-        removeBtn.onclick = function(){
-          if(!confirm('Remover esta partida?')) return;
-          historyMatches = historyMatches.filter(h=>h.id !== m.id);
-          localStorage.setItem('historyMatches_v1', JSON.stringify(historyMatches));
-          updateMatchesPage();
-        };
-
-        details.appendChild(removeBtn);
-
-        item.appendChild(details);
-        list.appendChild(item);
-      });
-    }
-
-    function updateScore(matchId, value){
-      const idx = historyMatches.findIndex(m=>m.id === matchId);
-      if(idx === -1) return;
-      historyMatches[idx].score = value;
-      localStorage.setItem('historyMatches_v1', JSON.stringify(historyMatches));
-    }
-
-    // inicialização: set available maps to allow clicking when MD chosen
-    function init(){
-      availableMaps = [];
-      pickedMaps = [];
-      pickSequence = [];
-      pickTurn = 0;
-      // attach initial display
-      updateMapDisplay();
-    }
-    init();
-  </script>
+<div id="editProfileModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.75); justify-content:center; align-items:center; z-index:100;">
+  <div style="background:#222; padding:20px; border-radius:12px; width:300px; text-align:center; position:relative;">
+    <h2 style="margin-top:0;">Editar Estatísticas</h2>
+    <input type="number" id="editPartidas" placeholder="Partidas" style="width:100%; padding:8px; margin-bottom:12px; border-radius:6px; border:none;"/>
+    <input type="number" id="editVitorias" placeholder="Vitórias" style="width:100%; padding:8px; margin-bottom:12px; border-radius:6px; border:none;"/>
+    <input type="number" id="editDerrotas" placeholder="Derrotas" style="width:100%; padding:8px; margin-bottom:12px; border-radius:6px; border:none;"/>
+    <div style="display:flex; justify-content:space-between; margin-top:12px;">
+      <button class="back-btn" onclick="saveProfileEdits()">Salvar</button>
+      <button class="back-btn" onclick="closeEditProfile()">Cancelar</button>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
