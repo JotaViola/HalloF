@@ -282,6 +282,47 @@ textarea.score-input:focus {
   .perfil-side-img { width: 240px; right: 20px; top: 140px; }
 }
 
+.dado {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 90px;
+    left: 90%;
+    transform: translateX(-50%);
+    background: white;
+    border: 3px solid black;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 5px;
+    padding: 10px;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .ponto {
+    width: 20px;
+    height: 20px;
+    background: black;
+    border-radius: 50%;
+    justify-self: center;
+    align-self: center;
+    opacity: 0; /* Começa invisível */
+    transition: opacity 0.1s;
+  }
+
+  .rolando {
+    transform: rotate(360deg);
+  }
+
+  button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
 </style>
 
 
@@ -322,6 +363,18 @@ textarea.score-input:focus {
       <button class="md-btn" onclick="setMD(5,this)">MD5</button>
     </div>
 
+    <div class="dado" id="dado">
+  <div class="ponto" id="p1"></div>
+  <div class="ponto" id="p2"></div>
+  <div class="ponto" id="p3"></div>
+  <div class="ponto" id="p4"></div>
+  <div class="ponto" id="p5"></div>
+  <div class="ponto" id="p6"></div>
+  <div class="ponto" id="p7"></div>
+  <div class="ponto" id="p8"></div>
+  <div class="ponto" id="p9"></div>
+</div> 
+
     <!-- map selection -->
     <div class="map-selection" id="mapSelection" style="display:none;flex-direction:column;align-items:center;margin-top:8px">
       <div class="current-turn" id="currentTurn">Vez de: -</div>
@@ -333,12 +386,14 @@ textarea.score-input:focus {
         <img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/de_nuke.jpg" class="map-btn" data-map="De_Nuke" alt="Nuke">
         <img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/de_anubis.webp" class="map-btn" data-map="De_Anubis" alt="Anubis">
         <img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/de_train.jpg" class="map-btn" data-map="De_Train" alt="Train">
-      </div>
+    </div>
       <div id="mapPanel" class="small-muted"></div>
       <div style="margin-top:8px">
         <button class="back-btn" onclick="resetSelection()">Reiniciar seleção</button>
         <button class="back-btn" style="margin-left:8px" onclick="cancelSelection()">Cancelar</button>
-      </div>
+      
+    
+    </div>
     </div>
 
 
@@ -755,6 +810,40 @@ textarea.score-input:focus {
     </div>
   </div>
 </div>
+
+<script>
+const dado = document.getElementById('dado');
+const pontos = [
+  document.getElementById('p1'), document.getElementById('p2'), document.getElementById('p3'),
+  document.getElementById('p4'), document.getElementById('p5'), document.getElementById('p6'),
+  document.getElementById('p7'), document.getElementById('p8'), document.getElementById('p9'),
+];
+
+const combinacoes = {
+  1: [4],
+  2: [0, 8],
+  3: [0, 4, 8],
+  4: [0, 2, 6, 8],
+  5: [0, 2, 4, 6, 8],
+  6: [0, 2, 3, 5, 6, 8]
+};
+
+function mostrarPontos(num) {
+  pontos.forEach(p => p.style.opacity = 0);
+  combinacoes[num].forEach(i => pontos[i].style.opacity = 1);
+}
+
+function rolarDado() {
+  dado.classList.add('rolando');
+  setTimeout(() => {
+    dado.classList.remove('rolando');
+    const resultado = Math.floor(Math.random() * 6) + 1;
+    mostrarPontos(resultado);
+  }, 300);
+}
+
+dado.addEventListener('click', rolarDado);
+</script>
 
 </body>
 </html>
