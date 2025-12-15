@@ -452,7 +452,7 @@ function showMatchModal(editIndex = null) {
   );
   faseSelect.value = existing?.fase || 'Fase de Grupo';
 
-  const subfases = ['Oitavas', 'Quartas', 'Semi-Final', 'Final', 'Decisão', 'Grupo Final', 'Melhor de 3', 'Melhor de 5'];
+  const subfases = ['Oitavas', 'Quartas', 'Semi-Final', 'Final', 'Decisão', 'Grupo Final', 'Mid Match', 'Lower Match'];
   const subfaseSelect = el('select', {},
     el('option', { value: '' }, '— selecione —'),
     ...subfases.map(s => el('option', { value: s }, s))
