@@ -210,6 +210,32 @@ hr{margin:16px 0; border:0; border-top:1px solid var(--glass);}
   .left{width:100%;}
   .grid{grid-template-columns:1fr;}
 }
+
+/* Área rolável apenas para os campeonatos */
+#campeonatosList {
+  max-height: calc(100vh - 260px); /* ajusta conforme o header */
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+/* Barra de rolagem estilizada (Chrome / Edge) */
+#campeonatosList::-webkit-scrollbar {
+  width: 6px;
+}
+
+#campeonatosList::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#campeonatosList::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    var(--accent),
+    var(--accent-2)
+  );
+  border-radius: 6px;
+}
+
 </style>
 
 
