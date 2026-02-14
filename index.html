@@ -574,7 +574,7 @@ textarea.score-input:focus {
   <button class="cs2-btn" onclick="openPage('playPage')">Play</button>
   <button class="cs2-btn" onclick="openPage('perfilPage')">Perfil</button>
   <button class="cs2-btn" onclick="openPage('partidasPage')">Partidas</button>
-  <button class="cs2-btn" onclick="window.location.href='test.html'">Campeonatos</button>
+  <button class="cs2-btn" onclick="window.location.href='test.html'">Profissional</button>
 
 </div>
 
@@ -610,13 +610,14 @@ textarea.score-input:focus {
     <div class="map-selection" id="mapSelection" style="display:none;flex-direction:column;align-items:center;margin-top:8px">
       <div class="current-turn" id="currentTurn">Vez de: -</div>
       <div class="maps-container" id="mapsContainer">
-        <img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/De_mirage.webp" class="map-btn" data-map="De_Mirage" alt="Mirage">
-        <img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/Dust_2_CS2.webp" class="map-btn" data-map="De_Dust2" alt="Dust2">
-        <img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/de_inferno.jpg" class="map-btn" data-map="De_Inferno" alt="Inferno">
-        <img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/de_ancient.jpg" class="map-btn" data-map="De_Ancient" alt="Ancient">
-        <img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/de_nuke.jpg" class="map-btn" data-map="De_Nuke" alt="Nuke">
-        <img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/de_anubis.webp" class="map-btn" data-map="De_Anubis" alt="Anubis">
-        <img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/de_train.jpg" class="map-btn" data-map="De_Train" alt="Train">
+<img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/de_ancient.jpg" class="map-btn" data-map="De_Ancient" alt="Ancient">
+<img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/de_anubis.webp" class="map-btn" data-map="De_Anubis" alt="Anubis">
+<img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/Dust_2_CS2.webp" class="map-btn" data-map="De_Dust2" alt="Dust2">
+<img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/de_inferno.jpg" class="map-btn" data-map="De_Inferno" alt="Inferno">
+<img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/De_mirage.webp" class="map-btn" data-map="De_Mirage" alt="Mirage">
+<img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/de_nuke.jpg" class="map-btn" data-map="De_Nuke" alt="Nuke">
+<img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/vertigo.webp" class="map-btn" data-map="De_Vertigo" alt="Vertigo">
+
     </div>
       <div id="mapPanel" class="small-muted"></div>
       <div style="margin-top:8px">
@@ -1054,7 +1055,7 @@ textarea.score-input:focus {
   }
 
   // -------------------- Play / MD / Map Selection --------------------
-  const cs2Maps = ["De_Ancient","De_Anubis","De_Dust2","De_Inferno","De_Mirage","De_Nuke","De_Train"];
+  const cs2Maps = ["De_Ancient","De_Anubis","De_Dust2","De_Inferno","De_Mirage","De_Nuke","De_Vertigo"];
   const actionsMD = {
     1: ["Ban1","Ban2","Ban1","Ban2","Ban1","Ban2"],
     3: ["Ban1","Ban2","Pick1","Pick2","Ban1","Ban2"],
