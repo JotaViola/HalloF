@@ -1,0 +1,704 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Camps</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0f1117;
+  --panel:#171923;
+  --panel-2:#1f2330;
+  --border:#2a2f3d;
+  --text:#e6e9f0;
+  --muted:#9aa3b2;
+
+  --primary:#5b8cff;
+  --primary-soft:#3f6ae0;
+
+  --success:#22c55e;
+  --danger:#ef4444;
+
+  --radius:14px;
+}
+
+*{box-sizing:border-box;}
+
+body{
+  margin:0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height:100vh;
+}
+
+/* HEADER */
+
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 28px;
+  background: var(--panel);
+  border-bottom:1px solid var(--border);
+}
+
+h1{
+  margin:0;
+  font-size:22px;
+  font-weight:600;
+  letter-spacing:.5px;
+}
+
+.controls{
+  display:flex;
+  gap:10px;
+}
+
+/* BOTÕES */
+
+button, select, input{
+  background: var(--panel-2);
+  border:1px solid var(--border);
+  color: var(--text);
+  padding:9px 14px;
+  border-radius:10px;
+  font-family:inherit;
+  transition:.2s ease;
+}
+
+button{
+  cursor:pointer;
+}
+
+button:hover{
+  border-color: var(--primary);
+}
+
+button.primary{
+  background: var(--primary);
+  border:none;
+  color:white;
+}
+
+button.primary:hover{
+  background: var(--primary-soft);
+}
+
+button.danger{
+  background: var(--danger);
+  border:none;
+  color:white;
+}
+
+/* LAYOUT */
+
+.wrap{
+  display:flex;
+  gap:24px;
+  padding:24px;
+}
+
+.left{
+  width:320px;
+}
+
+.right{
+  flex:1;
+}
+
+/* CARDS */
+
+.card{
+  background: var(--panel);
+  border:1px solid var(--border);
+  border-radius: var(--radius);
+  padding:20px;
+}
+
+.torneios,
+.matches{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-top:14px;
+}
+
+/* ITEM CAMPEONATO */
+
+.camp-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px;
+  border-radius:12px;
+  background: var(--panel-2);
+  border:1px solid var(--border);
+  cursor:pointer;
+  transition:.2s ease;
+}
+
+.camp-item:hover{
+  border-color: var(--primary);
+}
+
+.camp-item .meta{
+  font-size:12px;
+  color: var(--muted);
+}
+
+/* PARTIDAS */
+
+.match-card{
+  background: var(--panel-2);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:16px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.match-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:14px;
+}
+
+.pill{
+  padding:4px 10px;
+  background: rgba(91,140,255,.15);
+  color: var(--primary);
+  border-radius:999px;
+  font-size:12px;
+  font-weight:600;
+}
+
+/* MAPAS */
+
+.map-list{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.map-item{
+  background: var(--panel);
+  border:1px solid var(--border);
+  padding:8px 12px;
+  border-radius:10px;
+  font-size:13px;
+  min-width:110px;
+}
+
+.map-name{
+  font-weight:600;
+  font-size:12px;
+  color: var(--muted);
+  margin-bottom:4px;
+}
+
+.map-score{
+  font-weight:600;
+}
+
+/* MODAL */
+
+.modal-bg{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.modal{
+  width:100%;
+  max-width:680px;
+  background: var(--panel);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:24px;
+}
+
+/* GRID */
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+label{
+  font-size:12px;
+  color: var(--muted);
+  margin-bottom:6px;
+  display:block;
+}
+
+/* SCROLL */
+
+#torneiosList{
+  max-height:calc(100vh - 250px);
+  overflow-y:auto;
+}
+
+#torneiosList::-webkit-scrollbar{
+  width:6px;
+}
+
+#torneiosList::-webkit-scrollbar-thumb{
+  background: var(--border);
+  border-radius:6px;
+}
+
+/* RESPONSIVO */
+
+@media(max-width:900px){
+  .wrap{
+    flex-direction:column;
+  }
+
+  .left{
+    width:100%;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+
+
+
+</head>
+<body data-theme="dark">
+
+<header>
+  <h1>torneios</h1>
+  <div class="controls">
+    <div class="toolbar">
+      <button id="btnExport" class="small">Exportar JSON</button>
+      <input id="fileImport" type="file" accept="application/json" style="display:none">
+      <button id="btnImport" class="small">Importar</button>
+    </div>
+    <button id="btnTheme" class="small">Tema</button>
+    <button id="btnNewCamp" class="primary">+ Novo Campeonato</button>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="left">
+    <div class="card">
+      <strong>torneios</strong>
+      <div class="torneios" id="torneiosList"></div>
+      <div style="margin-top:12px;display:flex;gap:8px">
+        <button id="btnClear" class="small danger">Limpar tudo</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="right">
+    <div id="mainArea">
+      <div class="card" id="emptyState">Nenhum campeonato selecionado. Crie um campeonato para começar.</div>
+
+      <div id="campPage" class="card" style="display:none">
+        <div style="display:flex; justify-content:space-between; align-items:center">
+          <div>
+            <h2 id="campTitle" style="margin:0;color:var(--accent)"></h2>
+            <div id="campMeta" class="muted" style="font-size:13px"></div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center">
+            <button id="btnAddMatch" class="primary small">+ Nova Partida</button>
+            <button id="btnExportCamp" class="small">Exportar campeonato</button>
+            <button id="btnBack" class="small">Voltar</button>
+          </div>
+        </div>
+
+        <div id="campStats" class="muted" style="margin-top:10px;font-size:13px"></div>
+        <div id="matchesList" class="matches"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="modalBg" class="modal-bg">
+  <div id="modal" class="modal"></div>
+</div>
+
+
+<script>
+const MAPS = ['Anubis','Ancient','Dust2','Mirage','Nuke','Inferno','Vertigo'];
+let torneios = JSON.parse(localStorage.getItem('torneios')||'[]');
+let currentCampId = null;
+let theme = localStorage.getItem('theme')||'dark';
+document.documentElement.setAttribute('data-theme', theme);
+
+const uid = ()=> Date.now() + Math.floor(Math.random()*999);
+const saveAll = ()=> localStorage.setItem('torneios', JSON.stringify(torneios));
+const el = (tag, attrs={}, ...kids)=>{ 
+  const e=document.createElement(tag); 
+  for(const k in attrs){ 
+    if(k==='class') e.className=attrs[k]; 
+    else if(k.startsWith('on')) e.addEventListener(k.slice(2), attrs[k]); 
+    else e.setAttribute(k, attrs[k]); 
+  } 
+  kids.flat().forEach(c=>{ 
+    if(c==null) return; 
+    if(typeof c==='string') e.appendChild(document.createTextNode(c)); 
+    else e.appendChild(c); 
+  }); 
+  return e; 
+};
+
+/* ===== RENDER Torneios (LEFT) ===== */
+const torneiosList = document.getElementById('torneiosList');
+function renderTorneios(){
+  torneiosList.innerHTML = '';
+  if(torneios.length===0){ torneiosList.appendChild(el('div',{}, 'Nenhum campeonato')); return; }
+  torneios.forEach(c=>{
+    const item = el('div',{class:'camp-item'},
+      el('div',{}, el('div',{}, c.nome), el('div',{class:'meta'}, `${c.partidas?.length||0} partidas`)),
+      el('div',{},
+        el('button',{class:'small', onclick:(e)=>{ e.stopPropagation(); editCamp(c.id); }}, 'Editar'),
+        el('button',{class:'small', onclick:(e)=>{ e.stopPropagation(); deleteCamp(c.id); }}, 'Excluir')
+      )
+    );
+    item.addEventListener('click', ()=> openCamp(c.id)); // ✅ correção aqui
+torneiosList.appendChild(item);
+  });
+}
+
+/* ===== CRUD Torneios ===== */
+function newCampModal(){
+  const input = el('input',{type:'text', placeholder:'Nome do campeonato', style:'width:100%;margin-bottom:8px'});
+  const saveBtn = el('button',{class:'primary', onclick:()=>{
+    const name = input.value.trim(); if(!name) return alert('Digite o nome do campeonato');
+    torneios.push({id:uid(), nome:name, partidas:[]});
+    saveAll(); closeModal(); renderTorneios();
+  }}, 'Salvar');
+  const cancel = el('button',{onclick:closeModal, style:'margin-left:8px'}, 'Cancelar');
+  showModal('Novo Campeonato', el('div',{}, input, el('div',{style:'margin-top:8px'}, saveBtn, cancel)));
+}
+function editCamp(id){
+  const c = torneios.find(x=>x.id===id); if(!c) return;
+  const input = el('input',{type:'text', value:c.nome, style:'width:100%;margin-bottom:8px'});
+  const saveBtn = el('button',{class:'primary', onclick:()=>{ c.nome = input.value.trim()||c.nome; saveAll(); closeModal(); renderTorneios(); if(currentCampId===id) document.getElementById('campTitle').textContent = c.nome; }}, 'Salvar');
+  showModal('Editar Campeonato', el('div',{}, input, el('div',{style:'margin-top:8px'}, saveBtn, el('button',{onclick:closeModal, style:'margin-left:8px'}, 'Cancelar'))));
+}
+function deleteCamp(id){
+  if(!confirm('Excluir campeonato e todas as partidas?')) return;
+  torneios = torneios.filter(c=>c.id !== id);
+  saveAll();
+  renderTorneios();
+  if(currentCampId===id) closeCamp();
+}
+
+/* ===== OPEN / CLOSE CAMP ===== */
+function openCamp(id){
+  currentCampId = id;
+  const c = torneios.find(x=>x.id===id); if(!c) return;
+  document.getElementById('emptyState').style.display = 'none';
+  document.getElementById('campPage').style.display = 'block';
+  document.getElementById('campTitle').textContent = c.nome;
+  document.getElementById('campMeta').textContent = `${c.partidas.length || 0} partidas`;
+  renderMatches();
+  renderStats();
+}
+function closeCamp(){ currentCampId = null; document.getElementById('emptyState').style.display = 'block'; document.getElementById('campPage').style.display = 'none'; }
+
+/* ===== MODAL UTILS ===== */
+const modalBg = document.getElementById('modalBg');
+const modal = document.getElementById('modal');
+function showModal(title, contentEl){
+  modal.innerHTML = '';
+  modal.appendChild(el('h3',{}, title));
+  modal.appendChild(contentEl);
+  modalBg.style.display = 'flex';
+}
+function closeModal(){ modalBg.style.display = 'none'; modal.innerHTML = ''; }
+modalBg.addEventListener('click', (e)=>{ if(e.target === modalBg) closeModal(); });
+
+/* ===== MATCHES RENDER / STATS ===== */
+function calculateSeriesScore(match){
+  let a=0,b=0;
+  match.mapas.forEach(m=>{
+    if(Number(m.a) > Number(m.b)) a++;
+    else if(Number(m.b) > Number(m.a)) b++;
+  });
+  return {a,b};
+}
+
+function renderMatches(){
+  const list = document.getElementById('matchesList'); 
+  list.innerHTML = '';
+  if(!currentCampId) return;
+  const camp = torneios.find(c=>c.id===currentCampId);
+  if(!camp) return;
+
+  (camp.partidas||[]).forEach((p, idx)=>{
+    const score = calculateSeriesScore(p);
+
+    const top = el('div',{class:'match-top'},
+      el('div',{}, 
+        `${p.time1} vs ${p.time2} — `,
+        el('span',{class:'pill'}, `${score.a} x ${score.b}`),
+        el('div',{class:'muted', style:'margin-left:8px'}, 
+          `${p.fase}${p.fase==='Mata-Mata' && p.subfase ? ': '+p.subfase : ''}`
+        )
+      ),
+      el('div',{class:'actions'},
+        el('button',{class:'small', onclick:()=>editMatch(idx)}, 'Editar'),
+        el('button',{class:'small', onclick:()=>deleteMatch(idx)}, 'Excluir')
+      )
+    );
+
+    const mapsText = el('div', {class:'map-list'},
+  p.mapas
+    .filter(m => m.tipo.includes('Pick') || m.tipo === 'Restante')
+    .map(m => `${m.nome}: ${m.a} x ${m.b}`)
+    .join(' | ')
+);
+
+
+    const card = el('div',{class:'match-card'}, top, mapsText);
+    list.appendChild(card);
+  });
+}
+
+function renderStats(){
+  const camp = torneios.find(c=>c.id===currentCampId); if(!camp) return;
+  let wins=0, losses=0, draws=0;
+  (camp.partidas||[]).forEach(p=>{
+    const s = calculateSeriesScore(p);
+    if(s.a > s.b) wins++;
+    else if(s.a < s.b) losses++;
+    else draws++;
+  });
+  document.getElementById('campStats').innerHTML = `Partidas: ${camp.partidas.length || 0} • Vitórias: ${wins} • Derrotas: ${losses} • Empates: ${draws}`;
+}
+
+/* ===== ADD / EDIT MATCH (modal with MD logic & map picks) ===== */
+function addMatch(){
+  if(!currentCampId) return alert('Selecione um campeonato antes');
+  showMatchModal();
+}
+function editMatch(index){
+  showMatchModal(index);
+}
+function showMatchModal(editIndex = null) {
+  const camp = torneios.find(c => c.id === currentCampId);
+  if (!camp) return;
+
+  const existing = editIndex !== null ? JSON.parse(JSON.stringify(camp.partidas[editIndex])) : null;
+  let tempMaps = existing ? JSON.parse(JSON.stringify(existing.mapas)) : [];
+
+  const time1Input = el('input', { type: 'text', placeholder: 'Time 1', value: existing?.time1 || '' });
+  const time2Input = el('input', { type: 'text', placeholder: 'Time 2', value: existing?.time2 || '' });
+
+  const mdSelect = el('select', {},
+    el('option', { value: 1 }, 'MD1'),
+    el('option', { value: 3 }, 'MD3'),
+    el('option', { value: 5 }, 'MD5')
+  );
+  mdSelect.value = existing?.MD || 3;
+
+  // --- NOVO: campo Fase (Grupo / Mata-Mata) e Subfase (aparece se Mata-Mata)
+  const faseSelect = el('select', {},
+    el('option', { value: 'Fase de Grupo' }, 'Fase de Grupo'),
+    el('option', { value: 'Mata-Mata' }, 'Mata-Mata')
+  );
+  faseSelect.value = existing?.fase || 'Fase de Grupo';
+
+  const subfases = ['Oitavas', 'Quartas', 'Semi-Final', 'Final', 'Decisão', 'Grupo Final', 'Mid Match', 'Lower Match'];
+  const subfaseSelect = el('select', {},
+    el('option', { value: '' }, '— selecione —'),
+    ...subfases.map(s => el('option', { value: s }, s))
+  );
+  subfaseSelect.value = existing?.subfase || '';
+
+  // container visual para subfase (mostra / esconde)
+  const subfaseRow = el('div', { style: 'display:none;margin-top:6px' },
+    el('label', {}, 'Subfase (Mata-Mata)'),
+    subfaseSelect
+  );
+
+  function updateSubfaseVisibility(){
+    if(faseSelect.value === 'Mata-Mata'){
+      subfaseRow.style.display = 'block';
+    } else {
+      subfaseRow.style.display = 'none';
+      subfaseSelect.value = '';
+    }
+  }
+  // inicializa visibilidade
+  updateSubfaseVisibility();
+  // quando trocar a fase, atualiza
+  faseSelect.addEventListener('change', updateSubfaseVisibility);
+
+  // --- dice (mantive sua implementação)
+  const diceDisplay = el('div', {
+    style: 'width:50px;height:50px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:bold;border-radius:8px;border:2px solid var(--accent);cursor:pointer;user-select:none;transition: all 0.2s;'
+  }, existing?.dice || '?');
+
+  diceDisplay.addEventListener('click', ()=> {
+    const val = Math.floor(Math.random()*6)+1;
+    diceDisplay.textContent = val;
+  });
+
+  const mapsContainer = el('div', { style: 'margin-top:12px;display:flex;flex-direction:column;gap:8px;' });
+
+  function getOrder(MD) {
+    if (MD === 1) return ['Ban T1','Ban T2','Ban T1','Ban T2','Ban T1','Ban T2','Restante'];
+    if (MD === 3) return ['Ban T1','Ban T2','Pick T1','Pick T2','Ban T1','Ban T2','Restante'];
+    if (MD === 5) return ['Ban T1','Ban T2','Pick T1','Pick T2','Pick T1','Pick T2','Restante'];
+    return [];
+  }
+
+  function buildMaps() {
+    mapsContainer.innerHTML = '';
+    const MD = Number(mdSelect.value);
+    const order = getOrder(MD);
+
+    while(tempMaps.length < order.length) tempMaps.push({nome:'', a:0, b:0, tipo:order[tempMaps.length]});
+
+    order.forEach((tipo, i) => {
+      const mapSelect = el('select', {},
+        ...MAPS.map(m => el('option', { value: m }, m))
+      );
+      mapSelect.value = tempMaps[i].nome || '';
+      mapSelect.addEventListener('change', () => {
+        tempMaps[i].nome = mapSelect.value;
+        updateDisabled();
+      });
+
+      // Inputs de placar só para pick ou restante (observação: seu código original checa strings exatas de 'pick'/'restante', aqui mantive checagem por presença da palavra)
+      const isScoreable = /pick|Restante|restante/i.test(tipo);
+      const aInput = isScoreable ? el('input', { type: 'number', placeholder: 'a', value: tempMaps[i]?.a || 0, min: 0 }) : null;
+      const bInput = isScoreable ? el('input', { type: 'number', placeholder: 'b', value: tempMaps[i]?.b || 0, min: 0 }) : null;
+
+      if(aInput) aInput.addEventListener('input', ()=> tempMaps[i].a = Number(aInput.value));
+      if(bInput) bInput.addEventListener('input', ()=> tempMaps[i].b = Number(bInput.value));
+
+      const label = el('span', { style:'width:120px;font-weight:600;color:var(--accent);' }, tipo+':');
+      const row = el('div', { class:'map-row', style:'display:flex;gap:8px;align-items:center;' },
+        label, mapSelect, ...(aInput && bInput ? [aInput, bInput] : [])
+      );
+
+      mapsContainer.appendChild(row);
+    });
+
+    function updateDisabled() {
+      const selectedMaps = tempMaps.map(m => m.nome).filter(Boolean);
+      Array.from(mapsContainer.querySelectorAll('select')).forEach((sel, idx) => {
+        Array.from(sel.options).forEach(opt => {
+          opt.disabled = selectedMaps.includes(opt.value) && opt.value !== sel.value;
+        });
+      });
+    }
+
+    updateDisabled();
+  }
+
+  mdSelect.addEventListener('change', () => { tempMaps = []; buildMaps(); });
+  buildMaps();
+
+  const saveBtn = el('button', {
+    class: 'primary',
+    onclick: () => {
+      if (!time1Input.value.trim() || !time2Input.value.trim()) return alert('Preencha os dois times.');
+      const partida = {
+        time1: time1Input.value.trim(),
+        time2: time2Input.value.trim(),
+        MD: Number(mdSelect.value),
+        mapas: tempMaps,
+        dice: diceDisplay.textContent,
+        fase: faseSelect.value,
+        subfase: faseSelect.value === 'Mata-Mata' ? (subfaseSelect.value || '') : ''
+      };
+      if (editIndex !== null) camp.partidas[editIndex] = partida;
+      else camp.partidas.push(partida);
+      saveAll();
+      closeModal();
+      renderMatches();
+      renderStats();
+    }
+  }, 'Salvar');
+
+  const cancelBtn = el('button', { onclick: closeModal, style: 'margin-left:8px' }, 'Cancelar');
+
+  const content = el('div', {},
+    el('div', { class: 'grid' },
+      el('div', {}, el('label', {}, 'Time 1'), time1Input),
+      el('div', {}, el('label', {}, 'Time 2'), time2Input),
+      el('div', {}, el('label', {}, 'Formato'), mdSelect),
+      el('div', {}, el('label', {}, 'Fase'), faseSelect)
+    ),
+    subfaseRow,
+    el('div', { style: 'margin-top:8px;display:flex;gap:12px;align-items:center' }, diceDisplay),
+    mapsContainer,
+    el('div', { style: 'margin-top:12px;display:flex;gap:8px' }, saveBtn, cancelBtn)
+  );
+
+  // Se houver partida existente, preencher subfase (visibilidade já atualizada)
+  if(existing){
+    if(existing.fase) faseSelect.value = existing.fase;
+    if(existing.subfase) subfaseSelect.value = existing.subfase;
+    updateSubfaseVisibility();
+  }
+
+  showModal(editIndex !== null ? 'Editar Partida' : 'Nova Partida', content);
+}
+
+
+
+
+/* ===== DELETE MATCH ===== */
+function deleteMatch(idx){
+  if(!confirm('Excluir essa partida?')) return;
+  const camp = torneios.find(c=>c.id===currentCampId);
+  if(!camp) return;
+  camp.partidas.splice(idx,1);
+  saveAll(); renderMatches(); renderStats();
+}
+
+/* ===== EVENTS ===== */
+document.getElementById('btnNewCamp').addEventListener('click', newCampModal);
+document.getElementById('btnAddMatch').addEventListener('click', addMatch);
+document.getElementById('btnBack').addEventListener('click', closeCamp);
+
+document.getElementById('btnTheme').addEventListener('click', ()=>{
+  theme = theme==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('theme', theme);
+});
+
+document.getElementById('btnClear').addEventListener('click', ()=>{
+  if(confirm('Apagar tudo?')) { torneios=[]; saveAll(); renderTorneios(); closeCamp(); }
+});
+
+document.getElementById('btnImport').addEventListener('click', ()=>document.getElementById('fileImport').click());
+document.getElementById('fileImport').addEventListener('change', e=>{
+  const f = e.target.files[0]; if(!f) return;
+  const reader = new FileReader();
+  reader.onload = ()=>{ try{ torneios=JSON.parse(reader.result); saveAll(); renderTorneios(); closeCamp(); } catch(err){ alert('Erro no arquivo'); } };
+  reader.readAsText(f);
+});
+
+document.getElementById('btnExport').addEventListener('click', ()=>{ 
+  const data = JSON.stringify(torneios,null,2);
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([data],{type:'application/json'}));
+  a.download='torneios.json'; a.click();
+});
+
+/* INIT */
+renderTorneios();
+</script>
+
+</body>
+</html>
