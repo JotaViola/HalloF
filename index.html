@@ -551,6 +551,18 @@ textarea.score-input:focus {
 .stat-item button:hover {
   background: #555;
 }
+
+.team-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px; /* espaço entre eles */
+}
+
+.team {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 </style>
 
 
@@ -576,6 +588,7 @@ textarea.score-input:focus {
   <button class="cs2-btn" onclick="openPage('partidasPage')">Partidas</button>
   <button class="cs2-btn" onclick="window.location.href='test.html'">Profissional</button>
   <button class="cs2-btn" onclick="window.location.href='camp.html'">Camps</button>
+  <button class="cs2-btn" onclick="window.location.href='cs.co.html'">Classic Offensive</button>
 
 </div>
 
@@ -617,7 +630,7 @@ textarea.score-input:focus {
 <img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/de_inferno.jpg" class="map-btn" data-map="De_Inferno" alt="Inferno">
 <img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/De_mirage.webp" class="map-btn" data-map="De_Mirage" alt="Mirage">
 <img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/de_nuke.jpg" class="map-btn" data-map="De_Nuke" alt="Nuke">
-<img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/vertigo.webp" class="map-btn" data-map="De_Vertigo" alt="Vertigo">
+<img src="https://raw.githubusercontent.com/JotaViola/HalloF/main/de_overpass.jpg" class="map-btn" data-map="De_Overpass" alt="Overpass">
 
     </div>
       <div id="mapPanel" class="small-muted"></div>
@@ -672,11 +685,26 @@ textarea.score-input:focus {
             </div>
 
             <div class="info-row">
-              <span>Current team</span>
-              <span class="team">
-                <img src="villainsdark.png" class="team-icon"> Villains
-              </span>
-            </div>
+  <span>Last teams</span>
+
+  <div class="team-list">
+    <div class="team">
+      <img src="villainsdark.png" class="team-icon"> Villains
+    </div>
+
+    <div class="team">
+      <img src="brazil.jpg" class="team-icon"> Brazil
+    </div>
+
+    <div class="team">
+      <img src="kingz.webp" class="team-icon"> Kingz
+    </div>
+
+    <div class="team">
+      <img src="black dragon.jpg" class="team-icon"> Black Dragon
+    </div>
+  </div>
+</div>
 
             <div class="info-row">
               <span>Top 1</span>
@@ -1057,7 +1085,7 @@ textarea.score-input:focus {
   }
 
   // -------------------- Play / MD / Map Selection --------------------
-  const cs2Maps = ["De_Ancient","De_Anubis","De_Dust2","De_Inferno","De_Mirage","De_Nuke","De_Vertigo"];
+  const cs2Maps = ["De_Ancient","De_Anubis","De_Dust2","De_Inferno","De_Mirage","De_Nuke","De_Overpass"];
   const actionsMD = {
     1: ["Ban1","Ban2","Ban1","Ban2","Ban1","Ban2"],
     3: ["Ban1","Ban2","Pick1","Pick2","Ban1","Ban2"],
