@@ -286,6 +286,7 @@ label{
       <input id="fileImport" type="file" accept="application/json" style="display:none">
       <button id="btnImport" class="small">Importar</button>
     </div>
+    <button id="btnTheme" class="small">Tema</button>
     <button id="btnNewCamp" class="primary">+ Novo Campeonato</button>
   </div>
 </header>
@@ -332,7 +333,7 @@ label{
 
 
 <script>
-const MAPS = ['Anubis','Ancient','Dust2','Mirage','Nuke','Inferno','Overpass'];
+const MAPS = ['Anubis','Ancient','Dust2','Mirage','Nuke','Inferno','Vertigo'];
 let torneios = JSON.parse(localStorage.getItem('torneios')||'[]');
 let currentCampId = null;
 let theme = localStorage.getItem('theme')||'dark';
