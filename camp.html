@@ -7,18 +7,24 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#0f1117;
-  --panel:#171923;
-  --panel-2:#1f2330;
-  --border:#2a2f3d;
-  --text:#e6e9f0;
-  --muted:#9aa3b2;
+  --bg:#071A33;
+  --panel:#0B2347;
+  --panel-2:#10315F;
+  --border:#1D4B80;
+  --text:#F4F7FC;
+  --muted:#AFC1D8;
 
-  --primary:#5b8cff;
-  --primary-soft:#3f6ae0;
+  --primary:#F2C94C;
+  --primary-soft:#D9A900;
+  --accent:#F2C94C;
 
-  --success:#22c55e;
-  --danger:#ef4444;
+  --blue:#003B95;
+  --blue-light:#0A5CC2;
+  --yellow:#F2C94C;
+  --yellow-soft:#FFE58A;
+
+  --success:#F2C94C;
+  --danger:#D64545;
 
   --radius:14px;
 }
@@ -28,7 +34,16 @@
 body{
   margin:0;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background: var(--bg);
+
+  background-color: var(--blue);
+  background-image:
+    linear-gradient(rgba(0,59,149,.20), rgba(0,59,149,.20)),
+    url('https://raw.githubusercontent.com/JotaViola/HalloF/main/TeamRams.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
   color: var(--text);
   min-height:100vh;
 }
@@ -74,16 +89,19 @@ button{
 
 button:hover{
   border-color: var(--primary);
+  color: var(--yellow-soft);
 }
 
 button.primary{
   background: var(--primary);
   border:none;
-  color:white;
+  color:#071A33;
+  font-weight:700;
 }
 
 button.primary:hover{
   background: var(--primary-soft);
+  color:#071A33;
 }
 
 button.danger{
@@ -169,7 +187,7 @@ button.danger{
 
 .pill{
   padding:4px 10px;
-  background: rgba(91,140,255,.15);
+  background: rgba(242,201,76,.15);
   color: var(--primary);
   border-radius:999px;
   font-size:12px;
@@ -279,7 +297,7 @@ label{
 <body data-theme="dark">
 
 <header>
-  <h1>Torneios</h1>
+  <h1>torneios</h1>
   <div class="controls">
     <div class="toolbar">
       <button id="btnExport" class="small">Exportar JSON</button>
@@ -294,7 +312,7 @@ label{
 <div class="wrap">
   <div class="left">
     <div class="card">
-      <strong>Torneios</strong>
+      <strong>torneios</strong>
       <div class="torneios" id="torneiosList"></div>
       <div style="margin-top:12px;display:flex;gap:8px">
         <button id="btnClear" class="small danger">Limpar tudo</button>
