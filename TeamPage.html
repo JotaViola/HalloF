@@ -1,0 +1,3993 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>TeamRams | CS2</title>
+
+
+    <style>
+
+        /* =====================================================
+           TEAMRAMS | CS2
+           CSS COMPLETO
+        ===================================================== */
+
+        :root {
+
+            --bg: #070b10;
+            --bg-2: #0b1118;
+            --card: #101720;
+            --card-2: #121a23;
+
+            --border: #1d2936;
+            --border-light: #293847;
+
+            --text: #f3f6fa;
+            --text-soft: #9aa8b8;
+            --text-muted: #718095;
+
+            --blue: #1683ff;
+            --blue-light: #3ba0ff;
+
+            --yellow: #f5c542;
+
+            --green: #25df8b;
+            --red: #ff5d6c;
+
+            --radius: 10px;
+            --radius-lg: 16px;
+
+        }
+
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 10% 0%,
+                    rgba(18, 70, 120, .18),
+                    transparent 35%
+                ),
+                var(--bg);
+
+            color: var(--text);
+
+            font-family:
+                Inter,
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            overflow-x: hidden;
+
+        }
+
+
+        ::selection {
+            background: rgba(22, 131, 255, .35);
+            color: white;
+        }
+
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+
+        ::-webkit-scrollbar-track {
+            background: #070b10;
+        }
+
+
+        ::-webkit-scrollbar-thumb {
+
+            background: #263544;
+
+            border-radius: 20px;
+
+        }
+
+
+        /* =====================================================
+           TOPBAR
+        ===================================================== */
+
+        .topbar {
+
+            width: 100%;
+            height: 70px;
+
+            background: rgba(7, 11, 16, .97);
+
+            border-bottom: 1px solid #18232e;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 45px;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 9999;
+
+            backdrop-filter: blur(14px);
+
+        }
+
+
+        /* =====================================================
+           BRAND
+        ===================================================== */
+
+        .brand {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .brand img {
+
+            width: 48px;
+            height: 48px;
+
+            object-fit: contain;
+
+            border-radius: 10px;
+
+        }
+
+
+        .brand > div {
+
+            display: flex;
+
+            flex-direction: column;
+
+            line-height: 1.1;
+
+        }
+
+
+        #headerTag {
+
+            color: var(--yellow);
+
+            font-size: 12px;
+
+            font-weight: 900;
+
+            letter-spacing: 1.5px;
+
+            margin-bottom: 3px;
+
+        }
+
+
+        #headerTeamName {
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+        }
+
+
+        /* =====================================================
+           NAV
+        ===================================================== */
+
+        .main-nav {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: flex-end;
+
+            gap: 28px;
+
+            margin-left: auto;
+
+            white-space: nowrap;
+
+        }
+
+
+        .main-nav a {
+
+            color: #9ba7b6;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            transition: .2s ease;
+
+        }
+
+
+        .main-nav a:hover {
+
+            color: white;
+
+        }
+
+
+        /* =====================================================
+           BOTÃO ADMINISTRAÇÃO
+        ===================================================== */
+
+        .admin-btn {
+
+            display: inline-flex !important;
+
+            align-items: center;
+
+            justify-content: center;
+
+            width: auto !important;
+
+            height: auto !important;
+
+            padding: 10px 15px !important;
+
+            margin: 0 !important;
+
+            background: #111820;
+
+            border: 1px solid #2a3745;
+
+            border-radius: 7px;
+
+            color: var(--yellow);
+
+            font-family: inherit;
+
+            font-size: 13px !important;
+
+            font-weight: 800;
+
+            line-height: normal;
+
+            cursor: pointer;
+
+            white-space: nowrap;
+
+            position: static !important;
+
+            transition: .2s ease;
+
+        }
+
+
+        .admin-btn:hover {
+
+            background: var(--yellow);
+
+            color: #080c11;
+
+            border-color: var(--yellow);
+
+        }
+
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
+
+        main {
+
+            width: min(1200px, calc(100% - 40px));
+
+            margin: 0 auto;
+
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero {
+
+            width: 100%;
+
+            min-height: 465px;
+
+            padding: 60px 45px;
+
+            background:
+
+                radial-gradient(
+                    circle at 15% 50%,
+                    rgba(12, 55, 92, .30),
+                    transparent 42%
+                ),
+
+                radial-gradient(
+                    circle at 90% 20%,
+                    rgba(100, 70, 20, .10),
+                    transparent 40%
+                ),
+
+                #080c11;
+
+            border: 1px solid #18232e;
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1fr)
+                300px;
+
+            gap: 40px;
+
+            align-items: center;
+
+            box-sizing: border-box;
+
+            overflow: hidden;
+
+            position: relative;
+
+        }
+
+
+        .hero::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 500px;
+            height: 500px;
+
+            right: -250px;
+            top: -250px;
+
+            border: 1px solid rgba(255,255,255,.035);
+
+            border-radius: 50%;
+
+            pointer-events: none;
+
+        }
+
+
+        .hero-content {
+
+            min-width: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 35px;
+
+            position: relative;
+
+            z-index: 2;
+
+        }
+
+
+        /* =====================================================
+           HERO LOGO
+        ===================================================== */
+
+        .hero-logo-wrap {
+
+            width: 180px;
+            height: 180px;
+
+            flex-shrink: 0;
+
+            border-radius: 22px;
+
+            border: 1px solid #293645;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #111a24,
+                    #080d13
+                );
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 20px 50px rgba(0,0,0,.35);
+
+        }
+
+
+        .hero-logo-wrap img {
+
+            width: 135px;
+            height: 135px;
+
+            object-fit: contain;
+
+        }
+
+
+        .logo-fallback {
+
+            display: none;
+
+            color: var(--yellow);
+
+            font-size: 48px;
+
+            font-weight: 950;
+
+        }
+
+
+        /* =====================================================
+           HERO TEXTO
+        ===================================================== */
+
+        .hero-content > div:last-child {
+
+            min-width: 0;
+
+        }
+
+
+        .eyebrow {
+
+            margin-bottom: 10px;
+
+            color: var(--blue);
+
+            font-size: 13px;
+
+            font-weight: 900;
+
+            letter-spacing: 2px;
+
+        }
+
+
+        .hero h1 {
+
+            margin-bottom: 16px;
+
+            color: #f5f7fa;
+
+            font-size: clamp(42px, 5vw, 64px);
+
+            line-height: 1;
+
+            font-weight: 950;
+
+            letter-spacing: -2px;
+
+        }
+
+
+        #heroDescription {
+
+            max-width: 620px;
+
+            color: #8fa1b7;
+
+            font-size: 16px;
+
+            line-height: 1.7;
+
+        }
+
+
+        /* =====================================================
+           HERO TAGS
+        ===================================================== */
+
+        .hero-tags {
+
+            display: flex;
+
+            align-items: center;
+
+            flex-wrap: wrap;
+
+            gap: 9px;
+
+            margin-top: 23px;
+
+        }
+
+
+        .hero-tags span {
+
+            padding: 9px 12px;
+
+            background: #101720;
+
+            border: 1px solid #263442;
+
+            border-radius: 5px;
+
+            color: #cbd5e1;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+        }
+
+
+        .hero-tags .status {
+
+            color: var(--green);
+
+            border-color: rgba(37,223,139,.2);
+
+            background: rgba(37,223,139,.05);
+
+        }
+
+
+        /* =====================================================
+           ESTATÍSTICAS
+        ===================================================== */
+
+        .summary {
+
+            width: 300px;
+
+            max-width: 300px;
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            grid-template-rows: 1fr 1fr;
+
+            gap: 2px;
+
+            background: #1d2834;
+
+            border: 1px solid #1d2834;
+
+            box-sizing: border-box;
+
+            position: relative;
+
+            z-index: 5;
+
+        }
+
+
+        .summary > div {
+
+            width: auto;
+
+            min-width: 0;
+
+            height: 135px;
+
+            padding: 15px;
+
+            background: #10161f;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            box-sizing: border-box;
+
+        }
+
+
+        .summary strong {
+
+            color: #f5f7fa;
+
+            font-size: 28px;
+
+            font-weight: 900;
+
+            line-height: 1;
+
+        }
+
+
+        .summary span {
+
+            margin-top: 9px;
+
+            color: #7c8a9c;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+
+            white-space: nowrap;
+
+        }
+
+
+        .stat-icon {
+
+            font-size: 18px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .stat-win {
+            color: var(--green);
+        }
+
+
+        .stat-loss {
+            color: var(--red);
+        }
+
+
+        .stat-rate {
+            color: var(--yellow);
+        }
+
+
+        /* =====================================================
+           SEÇÕES
+        ===================================================== */
+
+        .section {
+
+            padding: 65px 25px 0;
+
+        }
+
+
+        .section-title {
+
+            display: flex;
+
+            align-items: flex-end;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            margin-bottom: 28px;
+
+        }
+
+
+        .section-title h2 {
+
+            color: #f4f6f8;
+
+            font-size: 32px;
+
+            font-weight: 900;
+
+            letter-spacing: -1px;
+
+        }
+
+
+        .counter {
+
+            color: #78889b;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+        }
+
+
+        /* =====================================================
+           PLAYERS
+        ===================================================== */
+
+        .players-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(5, minmax(0, 1fr));
+
+            gap: 14px;
+
+        }
+
+
+        .player-card {
+
+            min-width: 0;
+
+            padding: 18px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #111821,
+                    #0c1219
+                );
+
+            border: 1px solid #1d2936;
+
+            border-radius: var(--radius-lg);
+
+            overflow: hidden;
+
+            transition: .2s ease;
+
+        }
+
+
+        .player-card:hover {
+
+            transform: translateY(-4px);
+
+            border-color: #31506d;
+
+        }
+
+
+        .player-photo {
+
+            width: 100%;
+
+            aspect-ratio: 1 / 1;
+
+            border-radius: 10px;
+
+            object-fit: cover;
+
+            background: #080d13;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .player-placeholder {
+
+            width: 100%;
+
+            aspect-ratio: 1 / 1;
+
+            border-radius: 10px;
+
+            background: #080d13;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: #334355;
+
+            font-size: 45px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .player-card h3 {
+
+            color: white;
+
+            font-size: 18px;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .player-card .real-name {
+
+            color: #a3afbe;
+
+            font-size: 12px;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .player-card .role {
+
+            color: var(--blue);
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+        }
+
+
+        /* =====================================================
+           MAPAS
+        ===================================================== */
+
+        .maps-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 15px;
+
+        }
+
+
+        .map-card {
+
+            padding: 22px;
+
+            background: #10161f;
+
+            border: 1px solid #1c2733;
+
+            border-radius: var(--radius);
+
+            transition: .2s ease;
+
+        }
+
+
+        .map-card:hover {
+
+            transform: translateY(-2px);
+
+            border-color: #2e4154;
+
+        }
+
+
+        .map-header {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .map-header h3 {
+
+            color: #f2f5f8;
+
+            font-size: 17px;
+
+        }
+
+
+        .map-rate {
+
+            color: var(--blue);
+
+            font-size: 13px;
+
+            font-weight: 900;
+
+        }
+
+
+        .map-stats {
+
+            display: flex;
+
+            gap: 10px;
+
+        }
+
+
+        .map-stat {
+
+            flex: 1;
+
+            padding: 12px;
+
+            background: #0b1118;
+
+            border-radius: 7px;
+
+            text-align: center;
+
+        }
+
+
+        .map-stat strong {
+
+            display: block;
+
+            font-size: 22px;
+
+        }
+
+
+        .map-stat span {
+
+            color: #718096;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+        }
+
+
+        .map-win strong {
+            color: var(--green);
+        }
+
+
+        .map-loss strong {
+            color: var(--red);
+        }
+
+
+        /* =====================================================
+           TORNEIOS
+        ===================================================== */
+
+        .tournament-columns {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 18px;
+
+        }
+
+
+        .panel {
+
+            background: #0e141c;
+
+            border: 1px solid #1d2936;
+
+            border-radius: var(--radius-lg);
+
+            padding: 24px;
+
+        }
+
+
+        .panel h3 {
+
+            color: #f1f5f9;
+
+            font-size: 17px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .tournament {
+
+            padding: 16px;
+
+            background: #101720;
+
+            border: 1px solid #1d2936;
+
+            border-radius: 8px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .tournament:last-child {
+
+            margin-bottom: 0;
+
+        }
+
+
+        .tournament strong {
+
+            display: block;
+
+            color: #f2f5f8;
+
+            margin-bottom: 6px;
+
+        }
+
+
+        .tournament-info {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 10px;
+
+            flex-wrap: wrap;
+
+        }
+
+
+        .tournament-info span {
+
+            color: #78889a;
+
+            font-size: 12px;
+
+        }
+
+
+        .tournament-place {
+
+            color: var(--yellow) !important;
+
+            font-weight: 800;
+
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+
+            width: min(1200px, calc(100% - 40px));
+
+            margin: 80px auto 0;
+
+            padding: 30px 25px;
+
+            border-top: 1px solid #18232f;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+        }
+
+
+        footer strong {
+
+            color: var(--yellow);
+
+            font-size: 14px;
+
+        }
+
+
+        footer span {
+
+            color: #637286;
+
+            font-size: 12px;
+
+        }
+
+
+        /* =====================================================
+           MODAL
+        ===================================================== */
+
+        .modal {
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 50000;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+            background: rgba(0,0,0,.78);
+
+            backdrop-filter: blur(8px);
+
+        }
+
+
+        .modal.hidden {
+
+            display: none;
+
+        }
+
+
+        .modal-box {
+
+            width: min(1050px, 100%);
+
+            max-height: 92vh;
+
+            overflow-y: auto;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #101720,
+                    #0a0f15
+                );
+
+            border: 1px solid #293645;
+
+            border-radius: 16px;
+
+            padding: 30px;
+
+            box-shadow:
+                0 40px 100px rgba(0,0,0,.65);
+
+            position: relative;
+
+        }
+
+
+        .close {
+
+            position: absolute;
+
+            top: 18px;
+
+            right: 20px;
+
+            width: 36px;
+
+            height: 36px;
+
+            border-radius: 8px;
+
+            border: 1px solid #293645;
+
+            background: #111820;
+
+            color: #aeb8c5;
+
+            font-size: 24px;
+
+            cursor: pointer;
+
+        }
+
+
+        .close:hover {
+
+            background: var(--red);
+
+            border-color: var(--red);
+
+            color: white;
+
+        }
+
+
+        .modal-title {
+
+            padding-right: 50px;
+
+        }
+
+
+        /* =====================================================
+           TABS
+        ===================================================== */
+
+        .tabs {
+
+            display: flex;
+
+            gap: 5px;
+
+            padding: 5px;
+
+            background: #090e14;
+
+            border: 1px solid #1c2733;
+
+            border-radius: 9px;
+
+            margin-bottom: 25px;
+
+            overflow-x: auto;
+
+        }
+
+
+        .tab {
+
+            padding: 11px 17px;
+
+            border: none;
+
+            background: transparent;
+
+            color: #77879a;
+
+            border-radius: 6px;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            white-space: nowrap;
+
+        }
+
+
+        .tab.active {
+
+            background: #182432;
+
+            color: var(--blue);
+
+        }
+
+
+        .tab-content {
+
+            display: none;
+
+        }
+
+
+        .tab-content.active {
+
+            display: block;
+
+        }
+
+
+        /* =====================================================
+           FORM
+        ===================================================== */
+
+        .form-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 15px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        label {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 7px;
+
+            color: #a7b3c2;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+        }
+
+
+        input,
+        textarea,
+        select {
+
+            width: 100%;
+
+            padding: 12px 13px;
+
+            background: #0a1017;
+
+            border: 1px solid #263442;
+
+            border-radius: 7px;
+
+            outline: none;
+
+            color: #f1f5f9;
+
+            font-family: inherit;
+
+            font-size: 13px;
+
+        }
+
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+
+            border-color: var(--blue);
+
+            box-shadow:
+                0 0 0 3px rgba(22,131,255,.10);
+
+        }
+
+
+        textarea {
+
+            resize: vertical;
+
+            min-height: 100px;
+
+        }
+
+
+        .primary {
+
+            padding: 11px 17px;
+
+            border: 1px solid var(--blue);
+
+            border-radius: 7px;
+
+            background: var(--blue);
+
+            color: white;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            margin-top: 15px;
+
+        }
+
+
+        .primary:hover {
+
+            background: var(--blue-light);
+
+        }
+
+
+        .inline-form {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, minmax(0, 1fr))
+                auto;
+
+            gap: 9px;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        /* =====================================================
+           LISTAS DO ADMIN
+        ===================================================== */
+
+        .admin-list {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 8px;
+
+        }
+
+
+        .admin-item {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            padding: 13px 15px;
+
+            background: #0d141c;
+
+            border: 1px solid #1d2936;
+
+            border-radius: 8px;
+
+        }
+
+
+        .admin-info {
+
+            min-width: 0;
+
+        }
+
+
+        .admin-info strong {
+
+            display: block;
+
+            color: #f2f5f8;
+
+            font-size: 13px;
+
+        }
+
+
+        .admin-info span {
+
+            display: block;
+
+            margin-top: 4px;
+
+            color: #718096;
+
+            font-size: 11px;
+
+        }
+
+
+        .delete-btn {
+
+            flex-shrink: 0;
+
+            padding: 7px 10px;
+
+            border-radius: 6px;
+
+            border: 1px solid rgba(255,93,108,.25);
+
+            background: rgba(255,93,108,.07);
+
+            color: var(--red);
+
+            cursor: pointer;
+
+        }
+
+
+        .delete-btn:hover {
+
+            background: var(--red);
+
+            color: white;
+
+        }
+
+
+        /* =====================================================
+           BACKUP
+        ===================================================== */
+
+        .backup {
+
+            margin-top: 30px;
+
+            padding-top: 20px;
+
+            border-top: 1px solid #1b2733;
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+        }
+
+
+        .backup button,
+        .file-btn {
+
+            padding: 10px 14px;
+
+            background: #111820;
+
+            border: 1px solid #293645;
+
+            border-radius: 7px;
+
+            color: #aeb9c8;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+        }
+
+
+        .file-btn input {
+
+            display: none;
+
+        }
+
+
+        .danger {
+
+            border-color: rgba(255,93,108,.35) !important;
+
+            color: var(--red) !important;
+
+        }
+
+
+        /* =====================================================
+           RESPONSIVIDADE
+        ===================================================== */
+
+        @media (max-width: 1100px) {
+
+            .topbar {
+
+                padding: 0 25px;
+
+            }
+
+
+            .main-nav {
+
+                gap: 18px;
+
+            }
+
+
+            .hero {
+
+                grid-template-columns:
+                    minmax(0, 1fr)
+                    280px;
+
+                gap: 25px;
+
+                padding: 45px 30px;
+
+            }
+
+
+            .hero-content {
+
+                gap: 25px;
+
+            }
+
+
+            .hero-logo-wrap {
+
+                width: 150px;
+
+                height: 150px;
+
+            }
+
+
+            .hero-logo-wrap img {
+
+                width: 115px;
+
+                height: 115px;
+
+            }
+
+
+            .players-grid {
+
+                grid-template-columns:
+                    repeat(4, minmax(0,1fr));
+
+            }
+
+        }
+
+
+        @media (max-width: 900px) {
+
+            .main-nav {
+
+                gap: 10px;
+
+            }
+
+
+            .main-nav a {
+
+                display: none;
+
+            }
+
+
+            .admin-btn {
+
+                display: inline-flex !important;
+
+            }
+
+
+            .hero {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .summary {
+
+                width: 100%;
+
+                max-width: 500px;
+
+            }
+
+
+            .players-grid {
+
+                grid-template-columns:
+                    repeat(3, minmax(0,1fr));
+
+            }
+
+
+            .maps-grid {
+
+                grid-template-columns:
+                    repeat(2, minmax(0,1fr));
+
+            }
+
+
+            .inline-form {
+
+                grid-template-columns:
+                    repeat(2, minmax(0,1fr));
+
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            main {
+
+                width: calc(100% - 20px);
+
+            }
+
+
+            .topbar {
+
+                height: 62px;
+
+                padding: 0 12px;
+
+            }
+
+
+            .brand img {
+
+                width: 40px;
+
+                height: 40px;
+
+            }
+
+
+            #headerTag {
+
+                font-size: 10px;
+
+            }
+
+
+            #headerTeamName {
+
+                font-size: 13px;
+
+            }
+
+
+            .admin-btn {
+
+                padding: 9px 11px !important;
+
+                font-size: 11px !important;
+
+            }
+
+
+            .hero {
+
+                padding: 35px 20px;
+
+            }
+
+
+            .hero-content {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+            }
+
+
+            .hero-logo-wrap {
+
+                width: 130px;
+
+                height: 130px;
+
+            }
+
+
+            .hero-logo-wrap img {
+
+                width: 100px;
+
+                height: 100px;
+
+            }
+
+
+            .hero h1 {
+
+                font-size: 40px;
+
+                letter-spacing: -1px;
+
+            }
+
+
+            #heroDescription {
+
+                font-size: 14px;
+
+            }
+
+
+            .summary {
+
+                width: 100%;
+
+            }
+
+
+            .summary > div {
+
+                height: 110px;
+
+            }
+
+
+            .summary strong {
+
+                font-size: 24px;
+
+            }
+
+
+            .summary span {
+
+                font-size: 8px;
+
+            }
+
+
+            .section {
+
+                padding: 50px 10px 0;
+
+            }
+
+
+            .section-title h2 {
+
+                font-size: 27px;
+
+            }
+
+
+            .players-grid {
+
+                grid-template-columns:
+                    repeat(2, minmax(0,1fr));
+
+            }
+
+
+            .maps-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .tournament-columns {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .form-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .inline-form {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .modal {
+
+                padding: 10px;
+
+            }
+
+
+            .modal-box {
+
+                padding: 20px;
+
+                max-height: 95vh;
+
+            }
+
+
+            footer {
+
+                width: calc(100% - 20px);
+
+                flex-direction: column;
+
+                margin-top: 60px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         TOPBAR
+    ===================================================== -->
+
+    <header class="topbar">
+
+        <div class="brand">
+
+            <img
+                id="headerLogo"
+                src="logo.png"
+                alt="Logo da equipe"
+                onerror="this.style.display='none'"
+            >
+
+            <div>
+
+                <span id="headerTag">TR</span>
+
+                <strong id="headerTeamName">
+                    TeamRams
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <nav class="main-nav">
+
+            <a href="#inicio">Início</a>
+
+            <a href="#lineup">Line-up</a>
+
+            <a href="#mapas">Mapas</a>
+
+            <a href="#torneios">Torneios</a>
+
+            <button
+                type="button"
+                class="admin-btn"
+                onclick="openAdmin()"
+            >
+                ⚙ Administração
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =====================================================
+         CONTEÚDO
+    ===================================================== -->
+
+    <main>
+
+
+        <!-- =================================================
+             INÍCIO
+        ================================================= -->
+
+        <section
+            id="inicio"
+            class="hero"
+        >
+
+            <div class="hero-content">
+
+
+                <div class="hero-logo-wrap">
+
+                    <img
+                        id="heroLogo"
+                        src="logo.png"
+                        alt="Logo da equipe"
+                        onerror="
+                            this.style.display='none';
+                            document.getElementById('logoFallback').style.display='block';
+                        "
+                    >
+
+                    <div
+                        id="logoFallback"
+                        class="logo-fallback"
+                    >
+                        TR
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <p class="eyebrow">
+                        COUNTER-STRIKE 2
+                    </p>
+
+
+                    <h1 id="heroName">
+                        TeamRams
+                    </h1>
+
+
+                    <p id="heroDescription">
+                        Equipe profissional de Counter-Strike
+                        focada em competição e evolução constante.
+                    </p>
+
+
+                    <div class="hero-tags">
+
+                        <span id="heroTag">
+                            TR
+                        </span>
+
+                        <span id="heroCountry">
+                            🇧🇷 Brasil
+                        </span>
+
+                        <span class="status">
+                            ● ATIVA
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ESTATÍSTICAS -->
+
+            <div class="summary">
+
+
+                <div>
+
+                    <span class="stat-icon">
+                        🎮
+                    </span>
+
+                    <strong id="totalMatches">
+                        0
+                    </strong>
+
+                    <span>
+                        Partidas
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <span class="stat-icon stat-win">
+                        ✓
+                    </span>
+
+                    <strong id="totalWins">
+                        0
+                    </strong>
+
+                    <span>
+                        Vitórias
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <span class="stat-icon stat-loss">
+                        ×
+                    </span>
+
+                    <strong id="totalLosses">
+                        0
+                    </strong>
+
+                    <span>
+                        Derrotas
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <span class="stat-icon stat-rate">
+                        %
+                    </span>
+
+                    <strong id="totalWinrate">
+                        0%
+                    </strong>
+
+                    <span>
+                        Aproveitamento
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             LINE-UP
+        ================================================= -->
+
+        <section
+            id="lineup"
+            class="section"
+        >
+
+            <div class="section-title">
+
+                <div>
+
+                    <p class="eyebrow">
+                        ROSTER
+                    </p>
+
+                    <h2>
+                        Line-up
+                    </h2>
+
+                </div>
+
+                <span
+                    id="playerCount"
+                    class="counter"
+                >
+                    0 jogadores
+                </span>
+
+            </div>
+
+
+            <div
+                id="playersGrid"
+                class="players-grid"
+            ></div>
+
+        </section>
+
+
+        <!-- =================================================
+             MAPAS
+        ================================================= -->
+
+        <section
+            id="mapas"
+            class="section"
+        >
+
+            <div class="section-title">
+
+                <div>
+
+                    <p class="eyebrow">
+                        PERFORMANCE
+                    </p>
+
+                    <h2>
+                        Desempenho por mapa
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="mapsGrid"
+                class="maps-grid"
+            ></div>
+
+        </section>
+
+
+        <!-- =================================================
+             TORNEIOS
+        ================================================= -->
+
+        <section
+            id="torneios"
+            class="section"
+        >
+
+            <div class="section-title">
+
+                <div>
+
+                    <p class="eyebrow">
+                        COMPETIÇÕES
+                    </p>
+
+                    <h2>
+                        Torneios
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="tournament-columns">
+
+
+                <div class="panel">
+
+                    <h3>
+                        🏆 Torneios disputados
+                    </h3>
+
+                    <div id="pastTournaments"></div>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <h3>
+                        📅 Próximos torneios
+                    </h3>
+
+                    <div id="upcomingTournaments"></div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+    ===================================================== -->
+
+    <footer>
+
+        <strong id="footerTeam">
+            TeamRams
+        </strong>
+
+        <span>
+            Counter-Strike 2 • Team Profile
+        </span>
+
+    </footer>
+
+
+    <!-- =====================================================
+         MODAL ADMIN
+    ===================================================== -->
+
+    <div
+        id="adminModal"
+        class="modal hidden"
+    >
+
+        <div class="modal-box">
+
+
+            <button
+                class="close"
+                onclick="closeAdmin()"
+            >
+                ×
+            </button>
+
+
+            <div class="section-title modal-title">
+
+                <div>
+
+                    <p class="eyebrow">
+                        ADMINISTRAÇÃO
+                    </p>
+
+                    <h2>
+                        Editar equipe
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <!-- TABS -->
+
+            <div class="tabs">
+
+                <button
+                    class="tab active"
+                    data-tab="team"
+                >
+                    Equipe
+                </button>
+
+                <button
+                    class="tab"
+                    data-tab="players"
+                >
+                    Jogadores
+                </button>
+
+                <button
+                    class="tab"
+                    data-tab="maps"
+                >
+                    Mapas
+                </button>
+
+                <button
+                    class="tab"
+                    data-tab="tournaments"
+                >
+                    Torneios
+                </button>
+
+            </div>
+
+
+            <!-- =================================================
+                 EQUIPE
+            ================================================= -->
+
+            <div
+                id="tab-team"
+                class="tab-content active"
+            >
+
+                <div class="form-grid">
+
+
+                    <label>
+
+                        Nome da equipe
+
+                        <input
+                            id="editName"
+                            type="text"
+                        >
+
+                    </label>
+
+
+                    <label>
+
+                        Tag
+
+                        <input
+                            id="editTag"
+                            type="text"
+                        >
+
+                    </label>
+
+
+                    <label>
+
+                        País
+
+                        <input
+                            id="editCountry"
+                            type="text"
+                        >
+
+                    </label>
+
+
+                    <label>
+
+                        URL da logo
+
+                        <input
+                            id="editLogo"
+                            type="text"
+                        >
+
+                    </label>
+
+
+                </div>
+
+
+                <label>
+
+                    Descrição
+
+                    <textarea
+                        id="editDescription"
+                        rows="4"
+                    ></textarea>
+
+                </label>
+
+
+                <button
+                    class="primary"
+                    onclick="saveTeam()"
+                >
+                    Salvar equipe
+                </button>
+
+            </div>
+
+
+            <!-- =================================================
+                 JOGADORES
+            ================================================= -->
+
+            <div
+                id="tab-players"
+                class="tab-content"
+            >
+
+                <div class="inline-form">
+
+
+                    <input
+                        id="playerNick"
+                        placeholder="Nickname"
+                    >
+
+
+                    <input
+                        id="playerName"
+                        placeholder="Nome"
+                    >
+
+
+                    <input
+                        id="playerRole"
+                        placeholder="Função"
+                    >
+
+
+                    <input
+                        id="playerImage"
+                        placeholder="URL da foto"
+                    >
+
+
+                    <button
+                        class="primary"
+                        onclick="addPlayer()"
+                    >
+                        Adicionar
+                    </button>
+
+
+                </div>
+
+
+                <div
+                    id="adminPlayers"
+                    class="admin-list"
+                ></div>
+
+            </div>
+
+
+            <!-- =================================================
+                 MAPAS
+            ================================================= -->
+
+            <div
+                id="tab-maps"
+                class="tab-content"
+            >
+
+                <div class="inline-form">
+
+
+                    <input
+                        id="mapName"
+                        placeholder="Mapa"
+                    >
+
+
+                    <input
+                        id="mapWins"
+                        type="number"
+                        min="0"
+                        placeholder="Vitórias"
+                    >
+
+
+                    <input
+                        id="mapLosses"
+                        type="number"
+                        min="0"
+                        placeholder="Derrotas"
+                    >
+
+
+                    <input
+                        id="mapExtra"
+                        placeholder="Observação"
+                    >
+
+
+                    <button
+                        class="primary"
+                        onclick="addMap()"
+                    >
+                        Adicionar / atualizar
+                    </button>
+
+
+                </div>
+
+
+                <div
+                    id="adminMaps"
+                    class="admin-list"
+                ></div>
+
+            </div>
+
+
+            <!-- =================================================
+                 TORNEIOS
+            ================================================= -->
+
+            <div
+                id="tab-tournaments"
+                class="tab-content"
+            >
+
+                <div class="inline-form">
+
+
+                    <input
+                        id="tournamentName"
+                        placeholder="Nome do torneio"
+                    >
+
+
+                    <input
+                        id="tournamentDate"
+                        placeholder="Data"
+                    >
+
+
+                    <select id="tournamentType">
+
+                        <option value="past">
+                            Disputado
+                        </option>
+
+                        <option value="upcoming">
+                            Próximo
+                        </option>
+
+                    </select>
+
+
+                    <input
+                        id="tournamentPlace"
+                        placeholder="Posição / Status"
+                    >
+
+
+                    <button
+                        class="primary"
+                        onclick="addTournament()"
+                    >
+                        Adicionar
+                    </button>
+
+
+                </div>
+
+
+                <div
+                    id="adminTournaments"
+                    class="admin-list"
+                ></div>
+
+            </div>
+
+
+            <!-- =================================================
+                 BACKUP
+            ================================================= -->
+
+            <div class="backup">
+
+                <button onclick="exportData()">
+                    ⬇ Exportar backup
+                </button>
+
+
+                <label class="file-btn">
+
+                    ⬆ Importar backup
+
+                    <input
+                        type="file"
+                        accept=".json"
+                        onchange="importData(event)"
+                    >
+
+                </label>
+
+
+                <button
+                    class="danger"
+                    onclick="resetData()"
+                >
+                    Restaurar padrão
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ===================================================== -->
+
+    <script>
+
+        /* =====================================================
+           DADOS PADRÃO
+        ===================================================== */
+
+        const defaultData = {
+
+            team: {
+
+                name: "TeamRams",
+
+                tag: "TR",
+
+                country: "🇧🇷 Brasil",
+
+                logo: "logo.png",
+
+                description:
+                    "Equipe profissional de Counter-Strike focada em competição e evolução constante."
+
+            },
+
+
+            players: [
+
+                {
+                    nick: "Player 1",
+                    name: "Nome do jogador",
+                    role: "Rifler",
+                    image: ""
+                },
+
+                {
+                    nick: "Player 2",
+                    name: "Nome do jogador",
+                    role: "AWPer",
+                    image: ""
+                },
+
+                {
+                    nick: "Player 3",
+                    name: "Nome do jogador",
+                    role: "Entry Fragger",
+                    image: ""
+                },
+
+                {
+                    nick: "Player 4",
+                    name: "Nome do jogador",
+                    role: "Support",
+                    image: ""
+                },
+
+                {
+                    nick: "Player 5",
+                    name: "Nome do jogador",
+                    role: "IGL",
+                    image: ""
+                }
+
+            ],
+
+
+            maps: [
+
+                {
+                    name: "Mirage",
+                    wins: 0,
+                    losses: 0,
+                    extra: ""
+                },
+
+                {
+                    name: "Inferno",
+                    wins: 0,
+                    losses: 0,
+                    extra: ""
+                },
+
+                {
+                    name: "Ancient",
+                    wins: 0,
+                    losses: 0,
+                    extra: ""
+                },
+
+                {
+                    name: "Nuke",
+                    wins: 0,
+                    losses: 0,
+                    extra: ""
+                },
+
+                {
+                    name: "Dust II",
+                    wins: 0,
+                    losses: 0,
+                    extra: ""
+                },
+
+                {
+                    name: "Anubis",
+                    wins: 0,
+                    losses: 0,
+                    extra: ""
+                }
+
+            ],
+
+
+            tournaments: [
+
+                {
+                    name: "Exemplo de torneio",
+                    date: "2026",
+                    type: "past",
+                    place: "Participação"
+                },
+
+                {
+                    name: "Próximo campeonato",
+                    date: "A definir",
+                    type: "upcoming",
+                    place: "A disputar"
+                }
+
+            ]
+
+        };
+
+
+        /* =====================================================
+           CARREGAR DADOS
+        ===================================================== */
+
+        let data =
+            JSON.parse(
+                localStorage.getItem("teamRamsData")
+            ) || structuredClone(defaultData);
+
+
+        /* =====================================================
+           SALVAR
+        ===================================================== */
+
+        function saveData() {
+
+            localStorage.setItem(
+                "teamRamsData",
+                JSON.stringify(data)
+            );
+
+        }
+
+
+        /* =====================================================
+           RENDER GERAL
+        ===================================================== */
+
+        function render() {
+
+            renderTeam();
+
+            renderStats();
+
+            renderPlayers();
+
+            renderMaps();
+
+            renderTournaments();
+
+            renderAdmin();
+
+        }
+
+
+        /* =====================================================
+           EQUIPE
+        ===================================================== */
+
+        function renderTeam() {
+
+            const team = data.team;
+
+
+            document.getElementById("headerTag").textContent =
+                team.tag;
+
+
+            document.getElementById("headerTeamName").textContent =
+                team.name;
+
+
+            document.getElementById("heroName").textContent =
+                team.name;
+
+
+            document.getElementById("heroTag").textContent =
+                team.tag;
+
+
+            document.getElementById("heroCountry").textContent =
+                team.country;
+
+
+            document.getElementById("heroDescription").textContent =
+                team.description;
+
+
+            document.getElementById("footerTeam").textContent =
+                team.name;
+
+
+            const headerLogo =
+                document.getElementById("headerLogo");
+
+            const heroLogo =
+                document.getElementById("heroLogo");
+
+
+            headerLogo.src = team.logo;
+
+            heroLogo.src = team.logo;
+
+
+            document.getElementById("editName").value =
+                team.name;
+
+            document.getElementById("editTag").value =
+                team.tag;
+
+            document.getElementById("editCountry").value =
+                team.country;
+
+            document.getElementById("editLogo").value =
+                team.logo;
+
+            document.getElementById("editDescription").value =
+                team.description;
+
+        }
+
+
+        /* =====================================================
+           ESTATÍSTICAS
+        ===================================================== */
+
+        function renderStats() {
+
+            let wins = 0;
+
+            let losses = 0;
+
+
+            data.maps.forEach(map => {
+
+                wins += Number(map.wins) || 0;
+
+                losses += Number(map.losses) || 0;
+
+            });
+
+
+            const matches =
+                wins + losses;
+
+
+            const winrate =
+                matches > 0
+                    ? ((wins / matches) * 100).toFixed(1)
+                    : "0.0";
+
+
+            document.getElementById("totalMatches").textContent =
+                matches;
+
+
+            document.getElementById("totalWins").textContent =
+                wins;
+
+
+            document.getElementById("totalLosses").textContent =
+                losses;
+
+
+            document.getElementById("totalWinrate").textContent =
+                winrate + "%";
+
+        }
+
+
+        /* =====================================================
+           JOGADORES
+        ===================================================== */
+
+        function renderPlayers() {
+
+            const grid =
+                document.getElementById("playersGrid");
+
+
+            grid.innerHTML = "";
+
+
+            document.getElementById("playerCount").textContent =
+                `${data.players.length} jogadores`;
+
+
+            data.players.forEach(player => {
+
+                const card =
+                    document.createElement("div");
+
+                card.className =
+                    "player-card";
+
+
+                let photoHTML;
+
+
+                if (player.image) {
+
+                    photoHTML = `
+
+                        <img
+                            class="player-photo"
+                            src="${escapeHTML(player.image)}"
+                            alt="${escapeHTML(player.nick)}"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                        >
+
+                        <div
+                            class="player-placeholder"
+                            style="display:none"
+                        >
+                            👤
+                        </div>
+
+                    `;
+
+                } else {
+
+                    photoHTML = `
+
+                        <div class="player-placeholder">
+                            👤
+                        </div>
+
+                    `;
+
+                }
+
+
+                card.innerHTML = `
+
+                    ${photoHTML}
+
+                    <h3>
+                        ${escapeHTML(player.nick)}
+                    </h3>
+
+                    <p class="real-name">
+                        ${escapeHTML(player.name)}
+                    </p>
+
+                    <p class="role">
+                        ${escapeHTML(player.role)}
+                    </p>
+
+                `;
+
+
+                grid.appendChild(card);
+
+            });
+
+        }
+
+
+        /* =====================================================
+           MAPAS
+        ===================================================== */
+
+        function renderMaps() {
+
+            const grid =
+                document.getElementById("mapsGrid");
+
+
+            grid.innerHTML = "";
+
+
+            data.maps.forEach(map => {
+
+                const wins =
+                    Number(map.wins) || 0;
+
+                const losses =
+                    Number(map.losses) || 0;
+
+                const total =
+                    wins + losses;
+
+
+                const rate =
+                    total > 0
+                        ? ((wins / total) * 100).toFixed(1)
+                        : "0.0";
+
+
+                const card =
+                    document.createElement("div");
+
+
+                card.className =
+                    "map-card";
+
+
+                card.innerHTML = `
+
+                    <div class="map-header">
+
+                        <h3>
+                            ${escapeHTML(map.name)}
+                        </h3>
+
+                        <span class="map-rate">
+                            ${rate}%
+                        </span>
+
+                    </div>
+
+                    <div class="map-stats">
+
+                        <div class="map-stat map-win">
+
+                            <strong>
+                                ${wins}
+                            </strong>
+
+                            <span>
+                                Vitórias
+                            </span>
+
+                        </div>
+
+                        <div class="map-stat map-loss">
+
+                            <strong>
+                                ${losses}
+                            </strong>
+
+                            <span>
+                                Derrotas
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+
+                grid.appendChild(card);
+
+            });
+
+        }
+
+
+        /* =====================================================
+           TORNEIOS
+        ===================================================== */
+
+        function renderTournaments() {
+
+            const past =
+                document.getElementById("pastTournaments");
+
+            const upcoming =
+                document.getElementById("upcomingTournaments");
+
+
+            past.innerHTML = "";
+
+            upcoming.innerHTML = "";
+
+
+            data.tournaments.forEach(tournament => {
+
+                const item =
+                    document.createElement("div");
+
+                item.className =
+                    "tournament";
+
+
+                item.innerHTML = `
+
+                    <strong>
+                        ${escapeHTML(tournament.name)}
+                    </strong>
+
+                    <div class="tournament-info">
+
+                        <span>
+                            ${escapeHTML(tournament.date)}
+                        </span>
+
+                        <span class="tournament-place">
+                            ${escapeHTML(tournament.place)}
+                        </span>
+
+                    </div>
+
+                `;
+
+
+                if (tournament.type === "past") {
+
+                    past.appendChild(item);
+
+                } else {
+
+                    upcoming.appendChild(item);
+
+                }
+
+            });
+
+
+            if (!past.children.length) {
+
+                past.innerHTML =
+                    `<p style="color:#718095;font-size:13px;">
+                        Nenhum torneio disputado.
+                    </p>`;
+
+            }
+
+
+            if (!upcoming.children.length) {
+
+                upcoming.innerHTML =
+                    `<p style="color:#718095;font-size:13px;">
+                        Nenhum torneio próximo.
+                    </p>`;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           ADMIN
+        ===================================================== */
+
+        function openAdmin() {
+
+            renderAdmin();
+
+            document
+                .getElementById("adminModal")
+                .classList.remove("hidden");
+
+        }
+
+
+        function closeAdmin() {
+
+            document
+                .getElementById("adminModal")
+                .classList.add("hidden");
+
+        }
+
+
+        /* =====================================================
+           TABS
+        ===================================================== */
+
+        document
+            .querySelectorAll(".tab")
+            .forEach(tab => {
+
+                tab.addEventListener(
+                    "click",
+                    () => {
+
+                        document
+                            .querySelectorAll(".tab")
+                            .forEach(t =>
+                                t.classList.remove("active")
+                            );
+
+
+                        document
+                            .querySelectorAll(".tab-content")
+                            .forEach(content =>
+                                content.classList.remove("active")
+                            );
+
+
+                        tab.classList.add("active");
+
+
+                        document
+                            .getElementById(
+                                "tab-" + tab.dataset.tab
+                            )
+                            .classList.add("active");
+
+                    }
+                );
+
+            });
+
+
+        /* =====================================================
+           SALVAR EQUIPE
+        ===================================================== */
+
+        function saveTeam() {
+
+            data.team.name =
+                document.getElementById("editName").value.trim();
+
+
+            data.team.tag =
+                document.getElementById("editTag").value.trim();
+
+
+            data.team.country =
+                document.getElementById("editCountry").value.trim();
+
+
+            data.team.logo =
+                document.getElementById("editLogo").value.trim();
+
+
+            data.team.description =
+                document.getElementById("editDescription").value.trim();
+
+
+            saveData();
+
+            render();
+
+            alert("Dados da equipe salvos!");
+
+        }
+
+
+        /* =====================================================
+           ADICIONAR JOGADOR
+        ===================================================== */
+
+        function addPlayer() {
+
+            const nick =
+                document.getElementById("playerNick").value.trim();
+
+            const name =
+                document.getElementById("playerName").value.trim();
+
+            const role =
+                document.getElementById("playerRole").value.trim();
+
+            const image =
+                document.getElementById("playerImage").value.trim();
+
+
+            if (!nick) {
+
+                alert("Informe o nickname.");
+
+                return;
+
+            }
+
+
+            data.players.push({
+
+                nick,
+                name: name || "Nome não informado",
+                role: role || "Jogador",
+                image
+
+            });
+
+
+            saveData();
+
+            render();
+
+
+            document.getElementById("playerNick").value = "";
+
+            document.getElementById("playerName").value = "";
+
+            document.getElementById("playerRole").value = "";
+
+            document.getElementById("playerImage").value = "";
+
+        }
+
+
+        /* =====================================================
+           REMOVER JOGADOR
+        ===================================================== */
+
+        function removePlayer(index) {
+
+            if (
+                !confirm(
+                    "Deseja realmente remover este jogador?"
+                )
+            ) return;
+
+
+            data.players.splice(index, 1);
+
+            saveData();
+
+            render();
+
+        }
+
+
+        /* =====================================================
+           ADICIONAR / ATUALIZAR MAPA
+        ===================================================== */
+
+        function addMap() {
+
+            const name =
+                document.getElementById("mapName").value.trim();
+
+
+            const wins =
+                Number(
+                    document.getElementById("mapWins").value
+                ) || 0;
+
+
+            const losses =
+                Number(
+                    document.getElementById("mapLosses").value
+                ) || 0;
+
+
+            const extra =
+                document.getElementById("mapExtra").value.trim();
+
+
+            if (!name) {
+
+                alert("Informe o nome do mapa.");
+
+                return;
+
+            }
+
+
+            const existing =
+                data.maps.find(
+                    map =>
+                        map.name.toLowerCase() ===
+                        name.toLowerCase()
+                );
+
+
+            if (existing) {
+
+                existing.wins = wins;
+
+                existing.losses = losses;
+
+                existing.extra = extra;
+
+            } else {
+
+                data.maps.push({
+
+                    name,
+                    wins,
+                    losses,
+                    extra
+
+                });
+
+            }
+
+
+            saveData();
+
+            render();
+
+
+            document.getElementById("mapName").value = "";
+
+            document.getElementById("mapWins").value = "";
+
+            document.getElementById("mapLosses").value = "";
+
+            document.getElementById("mapExtra").value = "";
+
+        }
+
+
+        /* =====================================================
+           REMOVER MAPA
+        ===================================================== */
+
+        function removeMap(index) {
+
+            if (
+                !confirm(
+                    "Deseja realmente remover este mapa?"
+                )
+            ) return;
+
+
+            data.maps.splice(index, 1);
+
+            saveData();
+
+            render();
+
+        }
+
+
+        /* =====================================================
+           ADICIONAR TORNEIO
+        ===================================================== */
+
+        function addTournament() {
+
+            const name =
+                document
+                    .getElementById("tournamentName")
+                    .value
+                    .trim();
+
+
+            const date =
+                document
+                    .getElementById("tournamentDate")
+                    .value
+                    .trim();
+
+
+            const type =
+                document
+                    .getElementById("tournamentType")
+                    .value;
+
+
+            const place =
+                document
+                    .getElementById("tournamentPlace")
+                    .value
+                    .trim();
+
+
+            if (!name) {
+
+                alert("Informe o nome do torneio.");
+
+                return;
+
+            }
+
+
+            data.tournaments.push({
+
+                name,
+
+                date: date || "A definir",
+
+                type,
+
+                place: place || "A definir"
+
+            });
+
+
+            saveData();
+
+            render();
+
+
+            document.getElementById("tournamentName").value = "";
+
+            document.getElementById("tournamentDate").value = "";
+
+            document.getElementById("tournamentPlace").value = "";
+
+        }
+
+
+        /* =====================================================
+           REMOVER TORNEIO
+        ===================================================== */
+
+        function removeTournament(index) {
+
+            if (
+                !confirm(
+                    "Deseja realmente remover este torneio?"
+                )
+            ) return;
+
+
+            data.tournaments.splice(index, 1);
+
+            saveData();
+
+            render();
+
+        }
+
+
+        /* =====================================================
+           RENDER ADMIN
+        ===================================================== */
+
+        function renderAdmin() {
+
+
+            /* -------------------------
+               PLAYERS
+            ------------------------- */
+
+            const players =
+                document.getElementById("adminPlayers");
+
+
+            players.innerHTML = "";
+
+
+            data.players.forEach((player, index) => {
+
+                const item =
+                    document.createElement("div");
+
+                item.className =
+                    "admin-item";
+
+
+                item.innerHTML = `
+
+                    <div class="admin-info">
+
+                        <strong>
+                            ${escapeHTML(player.nick)}
+                        </strong>
+
+                        <span>
+                            ${escapeHTML(player.name)}
+                            •
+                            ${escapeHTML(player.role)}
+                        </span>
+
+                    </div>
+
+                    <button
+                        class="delete-btn"
+                        onclick="removePlayer(${index})"
+                    >
+                        Remover
+                    </button>
+
+                `;
+
+
+                players.appendChild(item);
+
+            });
+
+
+            /* -------------------------
+               MAPS
+            ------------------------- */
+
+            const maps =
+                document.getElementById("adminMaps");
+
+
+            maps.innerHTML = "";
+
+
+            data.maps.forEach((map, index) => {
+
+                const item =
+                    document.createElement("div");
+
+                item.className =
+                    "admin-item";
+
+
+                item.innerHTML = `
+
+                    <div class="admin-info">
+
+                        <strong>
+                            ${escapeHTML(map.name)}
+                        </strong>
+
+                        <span>
+                            ${Number(map.wins) || 0}
+                            vitórias
+                            •
+                            ${Number(map.losses) || 0}
+                            derrotas
+                        </span>
+
+                    </div>
+
+                    <button
+                        class="delete-btn"
+                        onclick="removeMap(${index})"
+                    >
+                        Remover
+                    </button>
+
+                `;
+
+
+                maps.appendChild(item);
+
+            });
+
+
+            /* -------------------------
+               TOURNAMENTS
+            ------------------------- */
+
+            const tournaments =
+                document.getElementById("adminTournaments");
+
+
+            tournaments.innerHTML = "";
+
+
+            data.tournaments.forEach(
+                (tournament, index) => {
+
+                    const item =
+                        document.createElement("div");
+
+                    item.className =
+                        "admin-item";
+
+
+                    const type =
+                        tournament.type === "past"
+                            ? "Disputado"
+                            : "Próximo";
+
+
+                    item.innerHTML = `
+
+                        <div class="admin-info">
+
+                            <strong>
+                                ${escapeHTML(tournament.name)}
+                            </strong>
+
+                            <span>
+                                ${escapeHTML(tournament.date)}
+                                •
+                                ${type}
+                                •
+                                ${escapeHTML(tournament.place)}
+                            </span>
+
+                        </div>
+
+                        <button
+                            class="delete-btn"
+                            onclick="removeTournament(${index})"
+                        >
+                            Remover
+                        </button>
+
+                    `;
+
+
+                    tournaments.appendChild(item);
+
+                }
+            );
+
+        }
+
+
+        /* =====================================================
+           EXPORTAR BACKUP
+        ===================================================== */
+
+        function exportData() {
+
+            const json =
+                JSON.stringify(
+                    data,
+                    null,
+                    4
+                );
+
+
+            const blob =
+                new Blob(
+                    [json],
+                    {
+                        type: "application/json"
+                    }
+                );
+
+
+            const url =
+                URL.createObjectURL(blob);
+
+
+            const a =
+                document.createElement("a");
+
+
+            a.href = url;
+
+            a.download =
+                "teamrams-backup.json";
+
+
+            a.click();
+
+
+            URL.revokeObjectURL(url);
+
+        }
+
+
+        /* =====================================================
+           IMPORTAR BACKUP
+        ===================================================== */
+
+        function importData(event) {
+
+            const file =
+                event.target.files[0];
+
+
+            if (!file) return;
+
+
+            const reader =
+                new FileReader();
+
+
+            reader.onload =
+                function(e) {
+
+                    try {
+
+                        const imported =
+                            JSON.parse(
+                                e.target.result
+                            );
+
+
+                        if (
+                            !imported.team ||
+                            !imported.players ||
+                            !imported.maps ||
+                            !imported.tournaments
+                        ) {
+
+                            throw new Error();
+
+                        }
+
+
+                        data = imported;
+
+
+                        saveData();
+
+                        render();
+
+
+                        alert(
+                            "Backup importado com sucesso!"
+                        );
+
+
+                    } catch {
+
+                        alert(
+                            "O arquivo selecionado não é um backup válido."
+                        );
+
+                    }
+
+                };
+
+
+            reader.readAsText(file);
+
+        }
+
+
+        /* =====================================================
+           RESTAURAR PADRÃO
+        ===================================================== */
+
+        function resetData() {
+
+            if (
+                !confirm(
+                    "Isso apagará todas as alterações salvas. Deseja continuar?"
+                )
+            ) return;
+
+
+            data =
+                structuredClone(defaultData);
+
+
+            saveData();
+
+            render();
+
+            alert(
+                "Dados restaurados para o padrão."
+            );
+
+        }
+
+
+        /* =====================================================
+           ESCAPE HTML
+        ===================================================== */
+
+        function escapeHTML(value) {
+
+            return String(value ?? "")
+                .replaceAll("&", "&amp;")
+                .replaceAll("<", "&lt;")
+                .replaceAll(">", "&gt;")
+                .replaceAll('"', "&quot;")
+                .replaceAll("'", "&#039;");
+
+        }
+
+
+        /* =====================================================
+           FECHAR MODAL CLICANDO FORA
+        ===================================================== */
+
+        document
+            .getElementById("adminModal")
+            .addEventListener(
+                "click",
+                function(event) {
+
+                    if (
+                        event.target === this
+                    ) {
+
+                        closeAdmin();
+
+                    }
+
+                }
+            );
+
+
+        /* =====================================================
+           ESC PARA FECHAR
+        ===================================================== */
+
+        document.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (
+                    event.key === "Escape"
+                ) {
+
+                    closeAdmin();
+
+                }
+
+            }
+        );
+
+
+        /* =====================================================
+           INICIALIZAÇÃO
+        ===================================================== */
+
+        render();
+
+    </script>
+
+</body>
+
+</html>
